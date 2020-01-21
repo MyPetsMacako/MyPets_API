@@ -2,29 +2,25 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use Notifiable;
+    protected $table ='users';
+    protected $filliable = ['name', 'surname', 'email', 'password'];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    public function register(Request $request)
+    {
+        $user = new self();
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->role_id = 2;
+        $user->save();
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+        return $user->email;
+    }
+
 }
