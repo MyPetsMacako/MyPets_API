@@ -16,7 +16,7 @@ class User extends Model
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = encrypt($request->password);
         $user->role_id = 2;
         $user->save();
 
