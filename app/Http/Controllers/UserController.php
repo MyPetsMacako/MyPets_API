@@ -34,6 +34,35 @@ class UserController extends Controller
         ],401);
     }
 
+    public function adminLogin(Request $request)
+    {
+        $data = ['email' => $request->email];
+        $user = User::where($data)->first();
+        if($user==NULL){
+            return response()->json([
+                "message" => 'Email o contraseña incorrecta'
+            ],401);
+        }
+
+        if(($user->role_id)!=1){
+            return response()->json([
+                "message" => 'Acceso denegado'
+            ],401);
+        }
+
+        if(decrypt($user->password) == $request->password)
+        {
+            $token = new token($data);
+            $token = $token->encode();
+            return response()->json([
+                "token" => $token
+            ],200);
+        }
+        return response()->json([
+            "message" => 'Email o contraseña incorrecta'
+        ],401);
+    }
+
     public function passrestore(Request $request)
     {
         $requested_email = ['email' => $request->email];
@@ -99,14 +128,6 @@ class UserController extends Controller
         if($email!=NULL){
             return response()->json([
                 "message" => 'Ese email ya existe'
-            ],401);
-        }
-
-        $requested_name = ['name' => $request->name];
-        $name = User::where($requested_name)->first();
-        if($name!=NULL){
-            return response()->json([
-                "message" => 'Ese usuario ya existe'
             ],401);
         }
 
