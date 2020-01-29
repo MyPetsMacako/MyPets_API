@@ -100,7 +100,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+
+        $usersData = array();
+        $usersData = $users->toArray();
+
+        return response()->json(
+            $usersData
+        ,200);
     }
 
     /**
@@ -132,9 +139,9 @@ class UserController extends Controller
         }
 
         $user = new User();
-        $user->register($request);
+        $user = $user->register($request);
 
-        $token = new token(['email' => $user->email]);
+        $token = new token(['email' => $user]);
         $token = $token->encode();
         return response()->json([
             "token" => $token

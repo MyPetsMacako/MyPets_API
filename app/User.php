@@ -8,15 +8,16 @@ use Illuminate\Http\Request;
 class User extends Model
 {
     protected $table ='users';
-    protected $filliable = ['name', 'surname', 'email', 'password'];
+    protected $filliable = ['fullname', 'nickname', 'email', 'password'];
 
     public function register(Request $request)
     {
         $user = new self();
-        $user->name = $request->name;
-        $user->surname = $request->surname;
+        $user->fullname = $request->fullname;
+        $user->nickname = $request->nickname;
         $user->email = $request->email;
         $user->password = encrypt($request->password);
+        $user->isBanned = false;
         $user->role_id = 2;
         $user->save();
 
