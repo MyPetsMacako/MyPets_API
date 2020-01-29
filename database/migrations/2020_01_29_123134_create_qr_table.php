@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePetsTable extends Migration
+class CreateQrTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,14 @@ class CreatePetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pets', function (Blueprint $table)
-        {
+        Schema::create('qr', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('name');
-            $table->string('breed');
-            $table->string('weight');
-            $table->string('colour');
-            $table->dateTime('birth_date');
-            $table->string('photo')->nullable();
-            $table->string('documents')->nullable();
+            $table->unsignedInteger('pet_id');
+            $table->foreign('pet_id')->references('id')->on('pets');
+            $table->unsignedInteger('url');
+            $table->boolean('is_linked');
             $table->timestamps();
         });
     }
@@ -36,6 +32,6 @@ class CreatePetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pets');
+        Schema::dropIfExists('qr');
     }
 }

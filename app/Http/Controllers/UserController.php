@@ -93,6 +93,28 @@ class UserController extends Controller
         ],200);
     }
 
+    public function showNickname(Request $request)
+    {
+        $data = ['email' => $request->email];
+        $user = User::where($data)->first();
+        if($user==NULL){
+            return response()->json([
+                "message" => 'Email o contraseña incorrecta'
+            ],401);
+        }
+        if(decrypt($user->password) == $request->password)
+        {
+            $token = new token($data);
+            $token = $token->encode();
+            return response()->json([
+                "token" => $token
+            ],200);
+        }
+        return response()->json([
+            "message" => 'Email o contraseña incorrecta'
+        ],401);
+    }
+
     /**
      * Display a listing of the resource.
      *
