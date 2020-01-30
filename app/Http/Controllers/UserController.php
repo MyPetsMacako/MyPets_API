@@ -93,25 +93,17 @@ class UserController extends Controller
         ],200);
     }
 
-    public function showNickname(Request $request)
+    public function showFullname(Request $request)
     {
-        $data = ['email' => $request->email];
+        $authorization = $request->header('Authorization');
+        $token = new token();
+        $decoded_token = $token->decode($authorization);
+        $email = $decoded_token->email;
+        $data = ['email' => $email];
         $user = User::where($data)->first();
-        if($user==NULL){
-            return response()->json([
-                "message" => 'Email o contraseña incorrecta'
-            ],401);
-        }
-        if(decrypt($user->password) == $request->password)
-        {
-            $token = new token($data);
-            $token = $token->encode();
-            return response()->json([
-                "token" => $token
-            ],200);
-        }
+
         return response()->json([
-            "message" => 'Email o contraseña incorrecta'
+            $user->fullName
         ],401);
     }
 
@@ -212,6 +204,59 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        return response()->json([
+            "message" => 'Usuario eliminado por completo correctamente'
+        ],200);
+    }
+
+    public function ban($id)
+    {
+        $user = User::find($id);
+
+        switch ($user->isBanned) {
+            case 0:
+                $user->isBanned = true;
+                $user->save();
+                return response()->json([
+                    "message" => 'Usuario baneado correctamente'
+                ],200);
+            break;
+            case 1:
+                $user->isBanned = false;
+                $user->save();
+                return response()->json([
+                    "message" => 'Usuario desbaneado correctamente'
+                ],200);
+            break;
+            default:
+                break;
+        }
+    }
+
+    public function role($id)
+    {
+        $user = User::find($id);
+
+        switch ($user->role_id) {
+            case 1:
+                $user->role_id = 2;
+                $user->save();
+                return response()->json([
+                    "message" => 'Usuario degradado correctamente'
+                ],200);
+            break;
+            case 2:
+                $user->role_id = 1;
+                $user->save();
+                return response()->json([
+                    "message" => 'Usuario ascendido correctamente'
+                ],200);
+            break;
+            default:
+                break;
+        }
     }
 }

@@ -21,4 +21,12 @@ Route::post('login', 'UserController@login');
 Route::post('adminLogin', 'UserController@adminLogin');
 Route::post('passrestore', 'UserController@passrestore');
 Route::post('registerRole', 'RoleController@store');
-Route::get('showUsersData', 'UserController@index');
+//Route::get('showUsersData', 'UserController@index');
+
+Route::middleware(['Checkout'])->group(function(){
+    Route::get('showUsersData', 'UserController@index');
+    Route::get('showUserFullname', 'UserController@showFullname');
+    Route::delete('deleteUser/{id}', 'UserController@destroy');
+    Route::post('ban/{id}', 'UserController@ban');
+    Route::post('role/{id}', 'UserController@role');
+});
