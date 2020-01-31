@@ -19,10 +19,11 @@ class CreatePetsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name');
+            $table->string('species');
             $table->string('breed');
             $table->string('weight');
             $table->string('colour');
-            $table->dateTime('birth_date');
+            $table->date('birth_date');
             $table->string('photo')->nullable();
             $table->string('documents')->nullable();
             $table->timestamps();

@@ -21,6 +21,11 @@ class UserController extends Controller
                 "message" => 'Email o contraseña incorrecta'
             ],401);
         }
+        if($user->isBanned == 1){
+            return response()->json([
+                "message" => 'Tu cuenta está baneada'
+            ],401);
+        }
         if(decrypt($user->password) == $request->password)
         {
             $token = new token($data);
@@ -93,7 +98,7 @@ class UserController extends Controller
         ],200);
     }
 
-    public function showFullname(Request $request)
+    public function showUserData(Request $request)
     {
         $authorization = $request->header('Authorization');
         $token = new token();
@@ -103,8 +108,10 @@ class UserController extends Controller
         $user = User::where($data)->first();
 
         return response()->json([
-            $user->fullName
-        ],401);
+            $user->fullName,
+            $user->nickname,
+            $user->email
+        ],200);
     }
 
     /**

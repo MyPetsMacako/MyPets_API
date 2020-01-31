@@ -25,8 +25,11 @@ Route::post('registerRole', 'RoleController@store');
 
 Route::middleware(['Checkout'])->group(function(){
     Route::get('showUsersData', 'UserController@index');
-    Route::get('showUserFullname', 'UserController@showFullname');
+    Route::get('showUserData', 'UserController@showUserData');
     Route::delete('deleteUser/{id}', 'UserController@destroy');
     Route::post('ban/{id}', 'UserController@ban');
     Route::post('role/{id}', 'UserController@role');
+    Route::post('petsRegister', 'PetController@store');
+    Route::post('adminPetsRegister', 'PetController@adminStore');
+    Route::get('showPetsData', 'PetController@index');
 });
