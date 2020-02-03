@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class CreateUsersTable extends Migration
 {
@@ -26,6 +27,18 @@ class CreateUsersTable extends Migration
             $table->string('tel_number')->nullable();
             $table->timestamps();
         });
+
+        DB::table('users')->insert(
+            array(
+                'role_id' => 1,
+                'isBanned' => false,
+                'fullName' => 'Default Admin',
+                'nickname' => 'Admin',
+                'email' => 'admin@mypets.com',
+                'password' => encrypt('123')
+            )
+        );
+
     }
 
     /**

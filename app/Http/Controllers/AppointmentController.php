@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Appointment;
 use Illuminate\Http\Request;
-use App\Pet;
 
-class PetController extends Controller
+class AppointmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +14,13 @@ class PetController extends Controller
      */
     public function index()
     {
-        $pets = Pet::all();
+        $appointment = Appointment::all();
 
-        $usersData = array();
-        $usersData = $pets->toArray();
+        $appointmentsData = array();
+        $appointmentsData = $appointment->toArray();
 
         return response()->json(
-            $usersData
+            $appointmentsData
         ,200);
     }
 
@@ -42,28 +42,12 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        $pet = new Pet();
-        $pet = $pet->register($request);
+        $appointment = new Appointment();
+        $appointment = $appointment->register($request);
 
         return response()->json([
-            "message" => 'Mascota registrada correctamente'
+            "message" => 'Cita registrada correctamente'
         ],200);
-    }
-
-    public function adminStore(Request $request)
-    {
-        $pet = new Pet();
-        $pet = $pet->adminRegister($request);
-
-        if ($pet == "error"){
-            return response()->json([
-                "message" => 'El id del usuario introcucido no existe'
-            ],401);
-        } else {
-            return response()->json([
-                "message" => 'Mascota registrada correctamente'
-            ],200);
-        }
     }
 
     /**
@@ -108,11 +92,6 @@ class PetController extends Controller
      */
     public function destroy($id)
     {
-        $pet = Pet::find($id);
-        $pet->delete();
-
-        return response()->json([
-            "message" => 'Mascota eliminada correctamente'
-        ],200);
+        //
     }
 }

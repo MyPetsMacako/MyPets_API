@@ -31,16 +31,45 @@ class Pet extends Model
         $pet->save();
     }
 
-    public function adminRegister(Request $request)
+// Al final dejar solo un metodo si funciona correctamente enviar el user_id como null en ios
+
+public function adminRegister(Request $request)
     {
-        $pet = new self();
-        $pet->user_id = $request->user_id;
-        $pet->name = $request->name;
-        $pet->species = $request->species;
-        $pet->breed = $request->breed;
-        $pet->colour = $request->colour;
-        $pet->weight = $request->weight;
-        $pet->birth_date = $request->birth_date;
-        $pet->save();
+        if (($request->user_id) == NULL) {
+            $request_token = $request->header('Authorization');
+            $token = new token();
+            $decoded_token = $token->decode($request_token);
+            $user_email = $decoded_token->email;
+            $user = User::where('email', '=', $user_email)->first();
+            $user_id = $user->id;
+
+            $pet = new self();
+            $pet->user_id = $user_id;
+            $pet->name = $request->name;
+            $pet->species = $request->species;
+            $pet->breed = $request->breed;
+            $pet->colour = $request->colour;
+            $pet->weight = $request->weight;
+            $pet->birth_date = $request->birth_date;
+            $pet->save();
+
+        } else {
+
+            $user = User::where('id', '=', $request->user_id)->first();
+
+            if ($user == NULL) {
+                return $status = "error";
+            } else {
+                $pet = new self();
+                $pet->user_id = $request->user_id;
+                $pet->name = $request->name;
+                $pet->species = $request->species;
+                $pet->breed = $request->breed;
+                $pet->colour = $request->colour;
+                $pet->weight = $request->weight;
+                $pet->birth_date = $request->birth_date;
+                $pet->save();
+            }
+        }
     }
 }

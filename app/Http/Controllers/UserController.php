@@ -108,9 +108,11 @@ class UserController extends Controller
         $user = User::where($data)->first();
 
         return response()->json([
-            $user->fullName,
-            $user->nickname,
-            $user->email
+            "name" => $user->fullName,
+            "nickname" => $user->nickname,
+            "email" => $user->email,
+            "telephone" => NULL,
+            "photo" => NULL
         ],200);
     }
 
