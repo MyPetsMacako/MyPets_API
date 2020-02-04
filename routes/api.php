@@ -24,16 +24,24 @@ Route::post('registerRole', 'RoleController@store');
 //Route::get('showUsersData', 'UserController@index');
 
 Route::middleware(['Checkout'])->group(function(){
+
     Route::get('showUsersData', 'UserController@index');
     Route::get('showUserData', 'UserController@showUserData');
     Route::delete('deleteUser/{id}', 'UserController@destroy');
     Route::post('ban/{id}', 'UserController@ban');
     Route::post('role/{id}', 'UserController@role');
+    Route::post('update_password','UserController@update');
+
     Route::post('petsRegister', 'PetController@store');
-    Route::post('adminPetsRegister', 'PetController@adminStore');
     Route::get('showPetsData', 'PetController@index');
     Route::delete('deletePet/{id}', 'PetController@destroy');
+    Route::post('update_pet','PetController@update');
+    Route::get('Show_pets', 'PetController@show');
+
     Route::get('showAppointmentsData', 'AppointmentController@index');
     Route::delete('deleteAppointment/{id}', 'AppointmentController@destroy');
     Route::post('appointmentRegister', 'AppointmentController@store');
+
+    Route::post('adminPetsRegister', 'PetController@adminStore');
+    
 });

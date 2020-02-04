@@ -23,7 +23,7 @@ class CreatePetsTable extends Migration
             $table->string('breed');
             $table->string('weight');
             $table->string('colour');
-            $table->date('birth_date');
+            $table->string('birth_date');
             $table->string('photo')->nullable();
             $table->string('documents')->nullable();
             $table->timestamps();

@@ -177,9 +177,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+  
     }
 
     /**
@@ -200,9 +200,45 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user_email = ['email' => $request->email];
+        
+        $request_user = User::where($user_email)->first();
+
+        $current_password = decrypt($request_user->password);
+       
+        if($current_password == $request->new_password)
+        //var_dump($request->new_password);exit;
+        {
+            return response()->json([
+
+                "message" => "tiene que ser la contrasena distinta que la anterior", 
+    
+            ], 400);
+        }
+
+        if($request->new_password == $request->repeat_new_password)
+        {
+            $request_user->password = encrypt($request->new_password);
+            $request_user->save();
+
+            return response()->json([
+
+                "new password" => $request->new_password,
+    
+            ], 200);
+
+        }else
+        {
+            
+            return response()->json([
+
+                "message" => "no tienes permisos", 
+    
+            ], 400);
+
+        }
     }
 
     /**

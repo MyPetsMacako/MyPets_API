@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pet;
+use App\User;
 
 class PetController extends Controller
 {
@@ -72,9 +73,16 @@ class PetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+
+        $user_email = ['email' => $request->email];
+        
+        $user = User::where($user_email)->first();
+
+        return response()->json([
+            $user->pets,
+        ], 200);
     }
 
     /**
@@ -97,7 +105,42 @@ class PetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $user_email = ['email' => $request->email];
+        
+        $request_user = User::where($user_email)->first();
+
+        $user_id = $request_user->id;
+
+        $pet = Pet::where('id', '=', $id)->first();
+
+        $user_id_of_pet = $pet->user_id;
+
+        if($user_id!=$user_id_of_pet)
+        {
+            return response()->json([
+                "message" => 'Solo puedes editar tus mascotas'
+            ], 401);
+        }
+
+        if($request->name==NULL || $request->species==NULL ||  $request->breed==NULL || $request->colour==NULL || $request->weight==NULL || $request->birth_date ==NULL)
+        {
+            return response()->json([
+                "message" => 'Rellena todos los campos'
+            ], 401);
+        }
+
+        $pet->name = $request->name;
+        $pet->species = $request->species;
+        $pet->breed = $request->breed;
+        $pet->colour = $request->colour;
+        $pet->weight = $request->weight;
+        $pet->birth_date = $request->birth_date;
+        $pet->save();
+
+        return response()->json([
+            "message" => 'Mascota actualizada'
+        ], 200);
     }
 
     /**
