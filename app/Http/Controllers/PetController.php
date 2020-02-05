@@ -148,6 +148,8 @@ class PetController extends Controller
         $pet->colour = $request->colour;
         $pet->weight = $request->weight;
         $pet->birth_date = $request->birth_date;
+        $pet->photo = $request->photo;
+        $pet->documents = $request->documents;
         $pet->save();
 
         return response()->json([

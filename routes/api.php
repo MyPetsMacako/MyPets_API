@@ -36,7 +36,7 @@ Route::middleware(['Checkout'])->group(function(){
     Route::post('petsRegister', 'PetController@store');
     Route::get('showPetsData', 'PetController@index');
     Route::delete('deletePet/{id}', 'PetController@destroy');
-    Route::post('updatePet','PetController@update');
+    Route::post('updatePet/{id}','PetController@update');
     Route::get('showPets', 'PetController@show');
 
     Route::get('showAppointmentsData', 'AppointmentController@index');
