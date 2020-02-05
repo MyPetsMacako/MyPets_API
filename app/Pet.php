@@ -11,7 +11,7 @@ class Pet extends Model
     protected $table ='pets';
     protected $filliable = ['user_id', 'name', 'species', 'breed', 'weight', 'birth_date', 'colour'];
 
-    public function register(Request $request)
+    /*public function register(Request $request)
     {
         $request_token = $request->header('Authorization');
         $token = new token();
@@ -29,11 +29,11 @@ class Pet extends Model
         $pet->weight = $request->weight;
         $pet->birth_date = $request->birth_date;
         $pet->save();
-    }
+    }*/
 
 // Al final dejar solo un metodo si funciona correctamente enviar el user_id como null en ios
 
-public function adminRegister(Request $request)
+public function register(Request $request)
     {
         if (($request->user_id) == NULL) {
             $request_token = $request->header('Authorization');

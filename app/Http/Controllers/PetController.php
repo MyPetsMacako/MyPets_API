@@ -41,7 +41,7 @@ class PetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
         $pet = new Pet();
         $pet = $pet->register($request);
@@ -49,12 +49,12 @@ class PetController extends Controller
         return response()->json([
             "message" => 'Mascota registrada correctamente'
         ],200);
-    }
+    }*/
 
-    public function adminStore(Request $request)
+    public function store(Request $request)
     {
         $pet = new Pet();
-        $pet = $pet->adminRegister($request);
+        $pet = $pet->register($request);
 
         if ($pet == "error"){
             return response()->json([
@@ -146,7 +146,7 @@ class PetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $id 
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
