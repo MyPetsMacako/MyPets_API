@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Helpers\Token;
 use Illuminate\Http\Request;
 use App\Pet;
 use App\User;
@@ -56,11 +56,14 @@ class PetController extends Controller
         $pet = new Pet();
         $pet = $pet->register($request);
 
-        if ($pet == "error"){
+        if ($pet == "error")
+        {
             return response()->json([
                 "message" => 'El id del usuario introcucido no existe'
             ],401);
-        } else {
+        } 
+        else 
+        {
             return response()->json([
                 "message" => 'Mascota registrada correctamente'
             ],200);
@@ -76,13 +79,19 @@ class PetController extends Controller
     public function show(Request $request)
     {
 
-        $user_email = ['email' => $request->email];
-        
-        $user = User::where($user_email)->first();
+        $authorization = $request->header('Authorization');
+        $token = new token();
+        $decoded_token = $token->decode($authorization);
+        $email = $decoded_token->email;
+        $data = ['email' => $email];
+        $user = User::where($data)->first();
 
-        return response()->json([
-            $user->pets,
-        ], 200);
+        $pet = Pet::where('user_id', $user->id)->get();
+
+        return response()->json(
+            $pet
+        , 200);
+       
     }
 
     /**
@@ -106,11 +115,14 @@ class PetController extends Controller
     public function update(Request $request, $id)
     {
 
-        $user_email = ['email' => $request->email];
-        
-        $request_user = User::where($user_email)->first();
+        $authorization = $request->header('Authorization');
+        $token = new token();
+        $decoded_token = $token->decode($authorization);
+        $email = $decoded_token->email;
+        $data = ['email' => $email];
+        $user = User::where($data)->first();
 
-        $user_id = $request_user->id;
+        $user_id = $user->id;
 
         $pet = Pet::where('id', '=', $id)->first();
 

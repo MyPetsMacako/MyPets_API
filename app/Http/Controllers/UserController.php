@@ -202,43 +202,20 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        $user_email = ['email' => $request->email];
-        
-        $request_user = User::where($user_email)->first();
+        $authorization = $request->header('Authorization');
+        $token = new token();
+        $decoded_token = $token->decode($authorization);
+        $email = $decoded_token->email;
+        $data = ['email' => $email];
+        $user = User::where($data)->first();
 
-        $current_password = decrypt($request_user->password);
-       
-        if($current_password == $request->new_password)
-        //var_dump($request->new_password);exit;
-        {
-            return response()->json([
+        $user->photo = $request->photo;
+        $user->tel_number = $request->tel_number;
+        $user->save();
 
-                "message" => "tiene que ser la contrasena distinta que la anterior", 
-    
-            ], 400);
-        }
-
-        if($request->new_password == $request->repeat_new_password)
-        {
-            $request_user->password = encrypt($request->new_password);
-            $request_user->save();
-
-            return response()->json([
-
-                "new password" => $request->new_password,
-    
-            ], 200);
-
-        }else
-        {
-            
-            return response()->json([
-
-                "message" => "no tienes permisos", 
-    
-            ], 400);
-
-        }
+        return response()->json([
+            "message" => 'Datos de usuario actualizados'
+        ], 200);
     }
 
     /**
@@ -302,6 +279,39 @@ class UserController extends Controller
             break;
             default:
                 break;
+        }
+    }
+
+    public function restorePassword(Request $request)
+    {
+        $authorization = $request->header('Authorization');
+        $token = new token();
+        $decoded_token = $token->decode($authorization);
+        $email = $decoded_token->email;
+        $data = ['email' => $email];
+        $user = User::where($data)->first();
+        $current_password = decrypt($user->password);
+        
+        if($current_password == $request->new_password)
+        {
+            return response()->json([
+                "message" => "tiene que ser la contrasena distinta que la anterior", 
+            ], 400);
+        }
+
+        if($request->new_password == $request->repeat_new_password)
+        {
+            $user->password = encrypt($request->new_password);
+            $user->save();
+            return response()->json([
+                "new password" => $request->new_password,
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                "message" => "no tienes permisos", 
+            ], 400);
         }
     }
 }

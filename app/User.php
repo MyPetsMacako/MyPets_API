@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class User extends Model
 {
     protected $table ='users';
-    protected $filliable = ['fullname', 'nickname', 'email', 'password'];
+    protected $filliable = ['fullname', 'nickname', 'email', 'password', 'photo', 'tel_number'];
 
     public function register(Request $request)
     {

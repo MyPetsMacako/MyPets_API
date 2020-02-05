@@ -30,13 +30,14 @@ Route::middleware(['Checkout'])->group(function(){
     Route::delete('deleteUser/{id}', 'UserController@destroy');
     Route::post('ban/{id}', 'UserController@ban');
     Route::post('role/{id}', 'UserController@role');
-    Route::post('update_password','UserController@update');
+    Route::post('restorePassword','UserController@restorePassword');
+    Route::post('updateUser','UserController@update');
 
     Route::post('petsRegister', 'PetController@store');
     Route::get('showPetsData', 'PetController@index');
     Route::delete('deletePet/{id}', 'PetController@destroy');
-    Route::post('update_pet','PetController@update');
-    Route::get('Show_pets', 'PetController@show');
+    Route::post('updatePet','PetController@update');
+    Route::get('showPets', 'PetController@show');
 
     Route::get('showAppointmentsData', 'AppointmentController@index');
     Route::delete('deleteAppointment/{id}', 'AppointmentController@destroy');
