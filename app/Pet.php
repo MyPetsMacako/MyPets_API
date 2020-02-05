@@ -11,6 +11,17 @@ class Pet extends Model
     protected $table ='pets';
     protected $filliable = ['user_id', 'name', 'species', 'breed', 'weight', 'birth_date', 'colour', 'photo', 'documents'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
+
     /*public function register(Request $request)
     {
         $request_token = $request->header('Authorization');

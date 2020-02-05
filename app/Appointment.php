@@ -10,6 +10,11 @@ class Appointment extends Model
     protected $table ='appointments';
     protected $filliable = ['pet_id', 'date', 'description'];
 
+    public function pet()
+    {
+        return $this->belongsTo(Pet::class);
+    }
+
     public function register(Request $request)
     {
         $appointment = new self();

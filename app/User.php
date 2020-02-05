@@ -10,6 +10,16 @@ class User extends Model
     protected $table ='users';
     protected $filliable = ['fullname', 'nickname', 'email', 'password', 'photo', 'tel_number'];
 
+    public function pets()
+    {
+        return $this->hasMany(Pet::class);
+    }
+
+    public function appointments()
+    {
+        return $this->hasManyThrough('App\Appointment','App\Pet');
+    }
+
     public function register(Request $request)
     {
         $user = new self();

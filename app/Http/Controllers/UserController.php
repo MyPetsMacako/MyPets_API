@@ -7,10 +7,41 @@ use App\User;
 use App\Helpers\Token;
 use App\Helpers\PasswordGenerator;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
+use stdClass;
 
 
 class UserController extends Controller
 {
+    public function adminPanelInfo(Request $request)
+    {   
+        $authorization = $request->header('Authorization');
+        $token = new token();
+        $decoded_token = $token->decode($authorization);
+        $email = $decoded_token->email;
+        $data = ['email' => $email];
+        $userName = User::select('fullName')->where($data)->first();
+
+        $users = User::count();
+        $pets = DB::table('pets')->count();
+        $qrs = DB::table('qr')->count();
+        $photos = DB::table('photos')->count();
+        $appointments = DB::table('appointments')->count();
+        //$reports = DB::table('reports')->count();
+
+        $adminData = $data;
+        array_push($adminData, $adminData);
+
+        return response()->json([
+            "userName" => $userName["fullName"],
+            "users" => strval($users),
+            "pets" => strval($pets),
+            "qrs" => strval($qrs),
+            "photos" => strval($photos),
+            "appointments" => strval($appointments),
+            "reports" => "0"
+        ],200);
+    }
 
     public function login(Request $request)
     {
