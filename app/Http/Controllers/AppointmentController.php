@@ -92,6 +92,11 @@ class AppointmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $appointment = Appointment::find($id);
+        $appointment->delete();
+
+        return response()->json([
+            "message" => 'Cita eliminada correctamente'
+        ],200);
     }
 }
