@@ -326,23 +326,33 @@ class UserController extends Controller
         if($current_password == $request->new_password)
         {
             return response()->json([
-                "message" => "tiene que ser la contrasena distinta que la anterior", 
-            ], 400);
+                "message" => "La contraseña tiene que ser distinta que la anterior", 
+            ], 401);
         }
 
-        if($request->new_password == $request->repeat_new_password)
-        {
-            $user->password = encrypt($request->new_password);
-            $user->save();
+        if($current_password == $request->old_password) {
+            if($request->new_password == $request->repeat_new_password)
+            {
+                $user->password = encrypt($request->new_password);
+                $user->save();
+                return response()->json([
+                    "new password" => $request->new_password,
+                ], 200);
+            }
+            else
+            {
+                return response()->json([
+                    "message" => "No tienes permisos", 
+                ], 401);
+            }
+        }else {
             return response()->json([
-                "new password" => $request->new_password,
-            ], 200);
+                "message" => "Contraseña erronea", 
+            ], 401);
         }
-        else
-        {
-            return response()->json([
-                "message" => "no tienes permisos", 
-            ], 400);
-        }
+
+        
+
+        
     }
 }
