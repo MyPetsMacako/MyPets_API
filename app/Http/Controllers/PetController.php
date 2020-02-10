@@ -86,10 +86,13 @@ class PetController extends Controller
         $data = ['email' => $email];
         $user = User::where($data)->first();
 
-        $pet = Pet::where('user_id', $user->id)->get();
-
+        $pets = Pet::where('user_id', $user->id)->get();
+        $names = array();
+        foreach ($pets as $key => $pet) {
+            array_push($names, $pet->name);
+        }
         return response()->json(
-            $pet
+            ["names"=>$names]
         , 200);
        
     }
