@@ -88,13 +88,22 @@ class PetController extends Controller
 
         $pets = Pet::where('user_id', $user->id)->get();
         $names = array();
-        foreach ($pets as $key => $pet) {
-            array_push($names, $pet->name);
+        $breeds = array();
+        $weights = array();
+        $colours = array();
+        $birth_dates = array();
+        if (isset($pets)){
+            foreach ($pets as $key => $pet) {
+                array_push($names, $pet->name);
+                array_push($breeds, $pet->breed);
+                array_push($weights, $pet->weight);
+                array_push($colors, $pet->colour);
+                array_push($birth_dates, $pet->birth_date);
+            }
         }
         return response()->json(
-            ["names"=>$names]
+            ["names"=>$names, "breeds"=>$breeds,"weights"=>$weights,"colours"=>$colours,"birth_dates"=>$birth_dates]
         , 200);
-       
     }
 
     /**
