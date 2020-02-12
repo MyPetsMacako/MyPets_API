@@ -16,10 +16,12 @@ class CreateAppointmentsTable extends Migration
         Schema::create('appointments', function (Blueprint $table)
         {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedInteger('pet_id');
             $table->foreign('pet_id')->references('id')->on('pets')->onDelete('cascade');
             $table->dateTime('date');
-            $table->string('description');
+            $table->string('title');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreateAppointmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('appointments');
     }
 }

@@ -41,7 +41,11 @@ Route::middleware(['Checkout'])->group(function(){
 
     Route::get('showAppointmentsData', 'AppointmentController@index');
     Route::delete('deleteAppointment/{id}', 'AppointmentController@destroy');
-    Route::post('appointmentRegister', 'AppointmentController@store');
+    Route::post('createAppoiment', 'AppointmentController@store');
+    Route::post('updateAppointment/{id}', 'AppointmentController@update');
+    Route::get('showAppointmentsByDateOrder', 'AppointmentController@showAppointmentsByDateOrder');
+    Route::get('showAppointmentDetails/{id}', 'AppointmentController@showAppointmentDetails');
+    
 
     Route::get('adminPanelInfo', 'UserController@adminPanelInfo');
     //Route::post('adminPetsRegister', 'PetController@adminStore');

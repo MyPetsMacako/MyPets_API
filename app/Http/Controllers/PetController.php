@@ -78,7 +78,6 @@ class PetController extends Controller
      */
     public function show(Request $request)
     {
-
         $authorization = $request->header('Authorization');
         $token = new token();
         $decoded_token = $token->decode($authorization);
@@ -92,6 +91,7 @@ class PetController extends Controller
         $weights = array();
         $colours = array();
         $birth_dates = array();
+
         if (isset($pets)){
             foreach ($pets as $key => $pet) {
                 array_push($names, $pet->name);
@@ -101,6 +101,7 @@ class PetController extends Controller
                 array_push($birth_dates, $pet->birth_date);
             }
         }
+        
         return response()->json(
             ["names"=>$names, "breeds"=>$breeds,"weights"=>$weights,"colours"=>$colours,"birth_dates"=>$birth_dates]
         , 200);
@@ -175,13 +176,31 @@ class PetController extends Controller
      * @param  int  $id 
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $pet = Pet::find($id);
-        $pet->delete();
+        $authorization = $request->header('Authorization');
+        $token = new token();
+        $decoded_token = $token->decode($authorization);
+        $email = $decoded_token->email;
+        $data = ['email' => $email];
+        $user = User::where($data)->first();
 
-        return response()->json([
-            "message" => 'Mascota eliminada correctamente'
-        ],200);
+        $pet = Pet::where('user_id', '=', $user->id)->where('id', '=', $id)->first();
+   
+        if($pet!= NULL)
+        {
+            $pet->delete();
+
+            return response()->json([
+                "message" => 'Mascota eliminada correctamente'
+            ], 200);
+
+        }else{
+
+            return response()->json([
+                "message" => 'Solo puedes eliminar tus mascotas'
+            ], 401);
+
+        }
     }
 }

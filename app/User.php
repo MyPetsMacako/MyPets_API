@@ -17,7 +17,7 @@ class User extends Model
 
     public function appointments()
     {
-        return $this->hasManyThrough('App\Appointment','App\Pet');
+        return $this->hasMany(Appointment::class);
     }
 
     public function register(Request $request)
