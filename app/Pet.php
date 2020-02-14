@@ -9,7 +9,7 @@ use App\Helpers\Token;
 class Pet extends Model
 {
     protected $table ='pets';
-    protected $filliable = ['user_id', 'name', 'species', 'breed', 'weight', 'birth_date', 'colour', 'photo', 'documents'];
+    protected $filliable = ['user_id', 'name', 'species', 'breed', 'weight', 'birth_date', 'color', 'photo', 'documents'];
 
     public function user()
     {
@@ -59,7 +59,7 @@ public function register(Request $request)
             $pet->name = $request->name;
             $pet->species = $request->species;
             $pet->breed = $request->breed;
-            $pet->colour = $request->colour;
+            $pet->color = $request->color;
             $pet->weight = $request->weight;
             $pet->birth_date = $request->birth_date;
             $pet->save();
@@ -76,7 +76,7 @@ public function register(Request $request)
                 $pet->name = $request->name;
                 $pet->species = $request->species;
                 $pet->breed = $request->breed;
-                $pet->colour = $request->colour;
+                $pet->color = $request->color;
                 $pet->weight = $request->weight;
                 $pet->birth_date = $request->birth_date;
                 $pet->save();

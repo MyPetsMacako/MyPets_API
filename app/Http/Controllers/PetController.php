@@ -89,7 +89,7 @@ class PetController extends Controller
         $names = array();
         $breeds = array();
         $weights = array();
-        $colours = array();
+        $colors = array();
         $birth_dates = array();
 
         if (isset($pets)){
@@ -97,13 +97,13 @@ class PetController extends Controller
                 array_push($names, $pet->name);
                 array_push($breeds, $pet->breed);
                 array_push($weights, $pet->weight);
-                array_push($colors, $pet->colour);
+                array_push($colors, $pet->color);
                 array_push($birth_dates, $pet->birth_date);
             }
         }
         
         return response()->json(
-            ["names"=>$names, "breeds"=>$breeds,"weights"=>$weights,"colours"=>$colours,"birth_dates"=>$birth_dates]
+            ["names"=>$names, "breeds"=>$breeds,"weights"=>$weights,"colors"=>$colors,"birth_dates"=>$birth_dates]
         , 200);
     }
 
