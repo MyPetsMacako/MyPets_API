@@ -8,6 +8,8 @@ use App\Helpers\Token;
 use App\Helpers\PasswordGenerator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 use stdClass;
 
 
@@ -137,13 +139,14 @@ class UserController extends Controller
         $email = $decoded_token->email;
         $data = ['email' => $email];
         $user = User::where($data)->first();
-
+        $path = 'http://localhost:8888/laravel-ivanodp/MyPets_API/storage/app/';
+        $photo = $path . $user->photo;
         return response()->json([
             "name" => $user->fullName,
             "nickname" => $user->nickname,
             "email" => $user->email,
             "telephone" => NULL,
-            "photo" => NULL
+            "photo" => $photo
         ],200);
     }
 
@@ -239,8 +242,8 @@ class UserController extends Controller
         $email = $decoded_token->email;
         $data = ['email' => $email];
         $user = User::where($data)->first();
-
-        $user->photo = $request->photo;
+        $photo = Storage::putFileAs('Users', new File($request->image), "$user->id.jpg");
+        $user->photo = $photo;
         $user->tel_number = $request->tel_number;
         $user->save();
 
