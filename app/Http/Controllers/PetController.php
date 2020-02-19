@@ -5,6 +5,8 @@ use App\Helpers\Token;
 use Illuminate\Http\Request;
 use App\Pet;
 use App\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class PetController extends Controller
 {
@@ -84,14 +86,14 @@ class PetController extends Controller
         $email = $decoded_token->email;
         $data = ['email' => $email];
         $user = User::where($data)->first();
-
+        $path = 'http://localhost:8888/laravel-ivanodp/MyPets_API/storage/app/';
         $pets = Pet::where('user_id', $user->id)->get();
         $names = array();
         $breeds = array();
         $weights = array();
         $colors = array();
         $birth_dates = array();
-
+        $images = array();
         if (isset($pets)){
             foreach ($pets as $key => $pet) {
                 array_push($names, $pet->name);
@@ -99,11 +101,13 @@ class PetController extends Controller
                 array_push($weights, $pet->weight);
                 array_push($colors, $pet->color);
                 array_push($birth_dates, $pet->birth_date);
+                $file = "$path" .   $pet->photo;
+                array_push($images, $file);
             }
         }
         
         return response()->json(
-            ["names"=>$names, "breeds"=>$breeds,"weights"=>$weights,"colors"=>$colors,"birth_dates"=>$birth_dates]
+            ["names"=>$names, "breeds"=>$breeds,"weights"=>$weights,"colors"=>$colors,"birth_dates"=>$birth_dates, "images" => $images]
         , 200);
     }
 

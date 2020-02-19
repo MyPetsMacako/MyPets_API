@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Helpers\Token;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class Pet extends Model
 {
@@ -60,6 +62,8 @@ public function register(Request $request)
             $pet->species = $request->species;
             $pet->breed = $request->breed;
             $pet->color = $request->color;
+            $photo = Storage::putFileAs('Pets', new File($request->image), "$user->id$pet->name.jpg");
+            $pet->photo = $photo;
             $pet->weight = $request->weight;
             $pet->birth_date = $request->birth_date;
             $pet->save();
