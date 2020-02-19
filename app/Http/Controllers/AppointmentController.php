@@ -183,7 +183,11 @@ class AppointmentController extends Controller
         $data = ['email' => $email];
         $user = User::where($data)->first();
 
-        $appointments = $user->appointments()->orderBy('date', 'asc')->get();
+        $appointments = $user->appointments()
+                        ->join('pets', 'pets.id', '=', 'appointments.pet_id')
+                        ->select('pets.name', 'appointments.id', 'title', 'date')
+                        ->orderBy('date', 'asc')
+                        ->get();
 
         return response()->json(
             $appointments
