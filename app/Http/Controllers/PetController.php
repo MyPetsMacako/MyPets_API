@@ -63,8 +63,8 @@ class PetController extends Controller
             return response()->json([
                 "message" => 'El id del usuario introcucido no existe'
             ],401);
-        } 
-        else 
+        }
+        else
         {
             return response()->json([
                 "message" => 'Mascota registrada correctamente'
@@ -88,6 +88,7 @@ class PetController extends Controller
         $user = User::where($data)->first();
         $path = 'http://localhost:8888/laravel-ivanodp/MyPets_API/storage/app/';
         $pets = Pet::where('user_id', $user->id)->get();
+        $ids = array();
         $names = array();
         $breeds = array();
         $weights = array();
@@ -96,6 +97,7 @@ class PetController extends Controller
         $images = array();
         if (isset($pets)){
             foreach ($pets as $key => $pet) {
+                array_push($ids, $pet->id);
                 array_push($names, $pet->name);
                 array_push($breeds, $pet->breed);
                 array_push($weights, $pet->weight);
@@ -105,9 +107,9 @@ class PetController extends Controller
                 array_push($images, $file);
             }
         }
-        
+
         return response()->json(
-            ["names"=>$names, "breeds"=>$breeds,"weights"=>$weights,"colors"=>$colors,"birth_dates"=>$birth_dates, "images" => $images]
+            ["ids"=>$ids, "names"=>$names, "breeds"=>$breeds,"weights"=>$weights,"colors"=>$colors,"birth_dates"=>$birth_dates, "images" => $images]
         , 200);
     }
 
@@ -177,7 +179,7 @@ class PetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id 
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
@@ -190,7 +192,7 @@ class PetController extends Controller
         $user = User::where($data)->first();
 
         $pet = Pet::where('user_id', '=', $user->id)->where('id', '=', $id)->first();
-   
+
         if($pet!= NULL)
         {
             $pet->delete();
