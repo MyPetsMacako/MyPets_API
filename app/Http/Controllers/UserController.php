@@ -16,7 +16,7 @@ use stdClass;
 class UserController extends Controller
 {
     public function adminPanelInfo(Request $request)
-    {   
+    {
         $authorization = $request->header('Authorization');
         $token = new token();
         $decoded_token = $token->decode($authorization);
@@ -186,13 +186,21 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $requested_email = ['email' => $request->email];
+        $requested_nickname = ['nickname' => $request->nickname];
 
         $email = User::where($requested_email)->first();
+        $nickname = User::where($requested_nickname)->first();
 
         if($email!=NULL){
             return response()->json([
                 "message" => 'Ese email ya existe'
-            ],401);
+            ],453);
+        }
+
+        if($nickname!=NULL){
+            return response()->json([
+                "message" => 'Ese nickname ya existe'
+            ],454);
         }
 
         $user = new User();
@@ -213,7 +221,7 @@ class UserController extends Controller
      */
     public function show()
     {
-  
+
     }
 
     /**
@@ -325,11 +333,11 @@ class UserController extends Controller
         $data = ['email' => $email];
         $user = User::where($data)->first();
         $current_password = decrypt($user->password);
-        
+
         if($current_password == $request->new_password)
         {
             return response()->json([
-                "message" => "La contraseña tiene que ser distinta que la anterior", 
+                "message" => "La contraseña tiene que ser distinta que la anterior",
             ], 401);
         }
 
@@ -345,17 +353,17 @@ class UserController extends Controller
             else
             {
                 return response()->json([
-                    "message" => "No tienes permisos", 
+                    "message" => "No tienes permisos",
                 ], 401);
             }
         }else {
             return response()->json([
-                "message" => "Contraseña erronea", 
+                "message" => "Contraseña erronea",
             ], 401);
         }
 
-        
 
-        
+
+
     }
 }
