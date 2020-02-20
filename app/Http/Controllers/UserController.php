@@ -140,12 +140,19 @@ class UserController extends Controller
         $data = ['email' => $email];
         $user = User::where($data)->first();
         $path = 'http://localhost:8888/laravel-ivanodp/MyPets_API/storage/app/';
-        $photo = $path . $user->photo;
+        $tel_number = "(No añadido)";
+        if ($user->photo != null) {
+            $photo = $path . $user->photo;
+            $tel_number = $user->tel_number;
+        }else{
+            $photo = ".";
+        }
+
         return response()->json([
             "name" => $user->fullName,
             "nickname" => $user->nickname,
             "email" => $user->email,
-            "telephone" => NULL,
+            "telephone" => $tel_number,
             "photo" => $photo
         ],200);
     }
