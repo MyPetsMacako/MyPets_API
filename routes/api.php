@@ -32,6 +32,9 @@ Route::middleware(['Checkout'])->group(function(){
     Route::post('role/{id}', 'UserController@role');
     Route::post('restorePassword','UserController@restorePassword');
     Route::post('updateUser','UserController@update');
+    Route::get('requestedUserInfo/{id}', 'UserController@adminRequestedUserInfo');
+    Route::post('adminUpdate/{id}', 'UserController@updateForAdmin');
+    Route::get('adminPanelInfo', 'UserController@adminPanelInfo');
 
     Route::post('petsRegister', 'PetController@store');
     Route::get('showPetsData', 'PetController@index');
@@ -45,8 +48,6 @@ Route::middleware(['Checkout'])->group(function(){
     Route::post('updateAppointment/{id}', 'AppointmentController@update');
     Route::get('showAppointmentsByDateOrder', 'AppointmentController@showAppointmentsByDateOrder');
     Route::get('showAppointmentDetails/{id}', 'AppointmentController@showAppointmentDetails');
-    
-
-    Route::get('adminPanelInfo', 'UserController@adminPanelInfo');
+   
     //Route::post('adminPetsRegister', 'PetController@adminStore');
 });

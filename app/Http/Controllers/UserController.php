@@ -10,11 +10,22 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
+use Illuminate\Contracts\Encryption\DecryptException;
 use stdClass;
 
 
 class UserController extends Controller
 {
+
+    public function adminRequestedUserInfo($id)
+    {
+        $user = User::select("id", "fullName", "nickname", "email")->where("id", "=", $id)->first();
+    
+        return response()->json(
+            $user
+        ,200);
+    }
+
     public function adminPanelInfo(Request $request)
     {
         $authorization = $request->header('Authorization');
@@ -265,6 +276,26 @@ class UserController extends Controller
         return response()->json([
             "message" => 'Datos de usuario actualizados'
         ], 200);
+    }
+
+    public function updateForAdmin(Request $request, $id)
+    {
+        $user = User::where('id', '=', $id)->first();
+
+        if($request->fullName==NULL || $request->nickname==NULL || $request->email==NULL){
+            return response()->json([
+                "message" => 'Debes rellenar todos los campos'
+            ],401);
+        } else {
+            $user->fullName = $request->fullName;
+            $user->nickname = $request->nickname;
+            $user->email = $request->email;
+            $user->save();
+            return response()->json([
+                "message" => 'Campos actualizados'
+            ],200);
+        }
+        
     }
 
     /**
