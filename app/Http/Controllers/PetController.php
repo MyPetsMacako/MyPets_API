@@ -10,6 +10,16 @@ use Illuminate\Http\File;
 
 class PetController extends Controller
 {
+
+    public function adminRequestedPetInfo($id)
+    {
+        $pet = Pet::select("id", "name", "species", "breed", "weight", "color", "birth_date")->where("id", "=", $id)->first();
+    
+        return response()->json(
+            $pet
+        ,200);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -174,6 +184,32 @@ class PetController extends Controller
         return response()->json([
             "message" => 'Mascota actualizada'
         ], 200);
+    }
+
+    public function updatePetsForAdmin(Request $request, $id)
+    {
+        $pet = Pet::where('id', '=', $id)->first();
+
+        if($request->name==NULL || $request->species==NULL ||  $request->breed==NULL || $request->colour==NULL || $request->weight==NULL || $request->birth_date ==NULL)
+        {
+            return response()->json([
+                "message" => 'Rellena todos los campos'
+            ], 401);
+        } else {
+            $pet->name = $request->name;
+            $pet->species = $request->species;
+            $pet->breed = $request->breed;
+            $pet->color = $request->colour;
+            $pet->weight = $request->weight;
+            $pet->birth_date = $request->birth_date;
+            //$pet->photo = $request->photo;
+            //$pet->documents = $request->documents;
+            $pet->save();
+            return response()->json([
+                "message" => 'Datos de la mascota actualizados'
+            ],200);
+        }
+        
     }
 
     /**
