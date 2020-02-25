@@ -11,10 +11,26 @@ use Illuminate\Http\File;
 class PetController extends Controller
 {
 
+    public function getQRData($id)
+    {
+        $pet = Pet::where('pets.id', '=', $id)
+                        ->join('users', 'users.id', '=', 'pets.user_id')
+                        ->select('pets.name', 'pets.photo', 'users.fullName', 'users.email', 'users.tel_Number')
+                        ->get();
+
+        $photo = $pet[0]["photo"];
+        $path = "http://localhost:8888/laravel-ivanodp/MyPets_API/storage/app/";
+        $photo = $path . $photo;
+        $pet[0]["photo"] = $photo;
+        return response()->json(
+            $pet
+        ,200);
+    }
+
     public function adminRequestedPetInfo($id)
     {
         $pet = Pet::select("id", "name", "species", "breed", "weight", "color", "birth_date")->where("id", "=", $id)->first();
-    
+
         return response()->json(
             $pet
         ,200);
@@ -209,7 +225,7 @@ class PetController extends Controller
                 "message" => 'Datos de la mascota actualizados'
             ],200);
         }
-        
+
     }
 
     /**

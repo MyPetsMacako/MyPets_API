@@ -21,6 +21,7 @@ Route::post('login', 'UserController@login');
 Route::post('adminLogin', 'UserController@adminLogin');
 Route::post('passrestore', 'UserController@passrestore');
 Route::post('registerRole', 'RoleController@store');
+Route::get('getQRData/{id}', 'PetController@getQRData');
 //Route::get('showUsersData', 'UserController@index');
 
 Route::middleware(['Checkout'])->group(function(){
@@ -43,13 +44,13 @@ Route::middleware(['Checkout'])->group(function(){
     Route::get('showPets', 'PetController@show');
     Route::get('adminRequestedPetInfo/{id}', 'PetController@adminRequestedPetInfo');
     Route::post('updatePetsForAdmin/{id}', 'PetController@updatePetsForAdmin');
-    
+
     Route::get('showAppointmentsData', 'AppointmentController@index');
     Route::delete('deleteAppointment/{id}', 'AppointmentController@destroy');
     Route::post('createAppointment', 'AppointmentController@store');
     Route::post('updateAppointment/{id}', 'AppointmentController@update');
     Route::get('showAppointmentsByDateOrder', 'AppointmentController@showAppointmentsByDateOrder');
     Route::get('showAppointmentDetails/{id}', 'AppointmentController@showAppointmentDetails');
-   
+
     //Route::post('adminPetsRegister', 'PetController@adminStore');
 });
