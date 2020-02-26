@@ -87,15 +87,24 @@ class PetController extends Controller
         if ($pet == "error")
         {
             return response()->json([
-                "message" => 'El id del usuario introcucido no existe'
+                "message" => 'El id del usuario introducido no existe'
             ],401);
         }
         else
         {
-            return response()->json([
-                "message" => 'Mascota registrada correctamente'
-            ],200);
+            $qrContent = $this->QRContent($pet);
+            return response()->json(
+                $qrContent
+            ,200);
         }
+    }
+
+    public function QRContent($pet): String
+    {
+        $url = "https://www.ivanodp.com/scannedQR?id=";
+        $petid = $pet;
+        $qrContent = strval($url . $petid);
+        return $qrContent;
     }
 
     /**
@@ -113,7 +122,6 @@ class PetController extends Controller
         $data = ['email' => $email];
         $user = User::where($data)->first();
         $path = 'http://3.226.72.213/storage/';
-        var_dump($path);
         $pets = Pet::where('user_id', $user->id)->get();
         $ids = array();
         $names = array();
