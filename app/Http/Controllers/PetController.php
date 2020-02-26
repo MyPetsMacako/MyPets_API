@@ -112,7 +112,8 @@ class PetController extends Controller
         $email = $decoded_token->email;
         $data = ['email' => $email];
         $user = User::where($data)->first();
-        $path = 'http://localhost:8888/laravel-ivanodp/MyPets_API/storage/app/';
+        $path = 'http://3.226.72.213/api/storage/app/';
+        var_dump($path);
         $pets = Pet::where('user_id', $user->id)->get();
         $ids = array();
         $names = array();
