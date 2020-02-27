@@ -121,7 +121,7 @@ class PetController extends Controller
         $email = $decoded_token->email;
         $data = ['email' => $email];
         $user = User::where($data)->first();
-        $path = 'http://3.226.72.213/storage/';
+        $path = 'http://mypetsapp.es/storage/';
         $pets = Pet::where('user_id', $user->id)->get();
         $ids = array();
         $names = array();

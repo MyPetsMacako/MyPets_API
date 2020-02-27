@@ -20,7 +20,7 @@ class UserController extends Controller
     public function adminRequestedUserInfo($id)
     {
         $user = User::select("id", "fullName", "nickname", "email")->where("id", "=", $id)->first();
-    
+
         return response()->json(
             $user
         ,200);
@@ -150,7 +150,7 @@ class UserController extends Controller
         $email = $decoded_token->email;
         $data = ['email' => $email];
         $user = User::where($data)->first();
-        $path = 'http://3.226.72.213/storage/';
+        $path = 'http://mypetsapp.es/storage/';
         $tel_number = "(No añadido)";
         if ($user->photo != null) {
             $photo = $path . $user->photo;
@@ -295,7 +295,7 @@ class UserController extends Controller
                 "message" => 'Campos actualizados'
             ],200);
         }
-        
+
     }
 
     /**
