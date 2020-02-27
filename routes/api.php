@@ -24,7 +24,7 @@ Route::post('registerRole', 'RoleController@store');
 Route::get('getQRData/{id}', 'PetController@getQRData');
 //Route::get('showUsersData', 'UserController@index');
 
-Route::middleware(['Checkout'])->group(function(){
+/*Route::middleware(['Checkout'])->group(function(){
 
     Route::get('showUsersData', 'UserController@index');
     Route::get('showUserData', 'UserController@showUserData');
@@ -53,7 +53,7 @@ Route::middleware(['Checkout'])->group(function(){
     Route::get('showAppointmentDetails/{id}', 'AppointmentController@showAppointmentDetails');
 
     //Route::post('adminPetsRegister', 'PetController@adminStore');
-});
+});*/
 
 Route::group(['middleware' => 'cors'], function(){
     Route::get('showUsersData', 'UserController@index');
