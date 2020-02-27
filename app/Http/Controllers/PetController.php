@@ -101,7 +101,7 @@ class PetController extends Controller
 
     public function QRContent($pet): String
     {
-        $url = "https://www.ivanodp.com/scannedQR?id=";
+        $url = "http://mypetspanel.000webhostapp.com/scannedQR.html?id=";
         $petid = $pet;
         $qrContent = strval($url . $petid);
         return $qrContent;

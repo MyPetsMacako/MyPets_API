@@ -70,6 +70,8 @@ public function register(Request $request)
             $pet->weight = $request->weight;
             $pet->birth_date = $request->birth_date;
             $pet->save();
+            $petId = $pet->id;
+            return($petId);
 
         } else {
 
