@@ -19,7 +19,7 @@ class PetController extends Controller
                         ->get();
 
         $photo = $pet[0]["photo"];
-        $path = "http://localhost:8888/laravel-ivanodp/MyPets_API/storage/app/";
+        $path = "http://mypetsapp.es/storage/app/";
         $photo = $path . $photo;
         $pet[0]["photo"] = $photo;
         return response()->json(
@@ -101,7 +101,7 @@ class PetController extends Controller
 
     public function QRContent($pet): String
     {
-        $url = "http://mypetspanel.000webhostapp.com/scannedQR.html?id=";
+        $url = "http://mypetsapp.es/adminpanel-MyPets/scannedQR.html?id=";
         $petid = $pet;
         $qrContent = strval($url . $petid);
         return $qrContent;
