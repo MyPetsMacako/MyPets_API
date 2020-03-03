@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    url_base = 'http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php'
+    document.getElementById("logoff").onclick = logoff;
     document.getElementById("button").onclick = required;
 })
 
@@ -36,7 +36,7 @@ function send (){
             document.getElementById("warning").className = "text-success";
             document.getElementById('warning').innerHTML = "Cita registrada correctamente";
             setTimeout(function () {
-                window.location.href="mainPanel%20-%20apointments.html";
+                window.location.href="mainPanel-apointments.html";
                 }, 3000);
         },
         error: function(result) {
@@ -46,8 +46,8 @@ function send (){
         }
 
     });
-    
-    
+
+
 }
 
 
@@ -59,4 +59,9 @@ function required(){
     } else {
         send ()
     }
+}
+
+function logoff(){
+    window.localStorage.removeItem("token");
+    window.location.href="index.html";
 }

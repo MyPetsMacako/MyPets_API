@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    url_base = 'http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php'
+    document.getElementById("logoff").onclick = logoff;
     document.getElementById("button").onclick = required;
     var passMatch = false;
 
@@ -90,14 +90,14 @@ function send(){
                 document.getElementById("warning").className = "text-danger";
                 document.getElementById('warning').innerHTML = result.responseJSON.message;
             }
-    
+
         });
     }else{
         document.getElementById('warning').style.display = 'block';
         document.getElementById("warning").className = "text-danger";
         document.getElementById('warning').innerHTML = result.responseJSON.message;
     }
-    
+
 }
 
 function edit(){
@@ -116,7 +116,7 @@ function edit(){
                 document.getElementById("warning").className = "text-success";
                 document.getElementById('warning').innerHTML = "Usuario actualizado correctamente";
                 setTimeout(function () {
-                    window.location.href="mainPanel%20-%20users.html";
+                    window.location.href="mainPanel-users.html";
                  }, 3000);
             },
             error: function(result) {
@@ -124,13 +124,13 @@ function edit(){
                 document.getElementById("warning").className = "text-danger";
                 document.getElementById('warning').innerHTML = result.responseJSON.message;
             }
-    
+
         });
 
         /*document.getElementById('warning').style.display = 'block';
         document.getElementById("warning").className = "text-danger";
         document.getElementById('warning').innerHTML = result.responseJSON.message;*/
-        
+
 }
 
 function required(){
@@ -154,7 +154,7 @@ function required(){
         }
     }
 
-    
+
 }
 
 function editMode($requestedUserId){
@@ -195,4 +195,9 @@ function createMode(){
     console.log("Modo creación de usuario");
     document.getElementById('title').innerHTML = "Registrar nuevo usuario:";
     document.getElementById('button').innerHTML = "Crear usuario";
+}
+
+function logoff(){
+    window.localStorage.removeItem("token");
+    window.location.href="index.html";
 }

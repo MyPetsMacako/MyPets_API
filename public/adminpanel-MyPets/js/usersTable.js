@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    url_base = 'http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php'
+    document.getElementById("logoff").onclick = logoff;
     //document.getElementById("table").onclick = send;
     //window.onload = send;
     var data = [];
@@ -218,9 +218,10 @@ function editUser(userid) {
     window.localStorage.setItem('RequestedUserId', userid);
     window.localStorage.setItem('RequestedView', "edit");
 
-    window.location.href = 'mainPanel - new-user.html'
+    window.location.href = 'mainPanel-new-user.html'
 }
 
-
-
-
+function logoff(){
+    window.localStorage.removeItem("token");
+    window.location.href="index.html";
+}

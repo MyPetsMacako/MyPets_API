@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    url_base = 'http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php'
+    document.getElementById("logoff").onclick = logoff;
     document.getElementById("button").onclick = required;
-    
+
     $token = window.localStorage.getItem("token");
     console.log("token: "+$token);
 })
@@ -25,7 +25,7 @@ function send (){
         data: data,
         success:function(response){
             window.localStorage.setItem('token', response["token"]);
-            location.href ="mainPanel%20-%20home.html";
+            location.href ="mainPanel-home.html";
         },
         error: function(result) {
             document.getElementById('warning').style.display = 'block';
@@ -45,3 +45,7 @@ function required(){
     }
 }
 
+function logoff(){
+    window.localStorage.removeItem("token");
+    window.location.href="index.html";
+}

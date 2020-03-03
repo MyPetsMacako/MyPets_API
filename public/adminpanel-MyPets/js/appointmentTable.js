@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    url_base = 'http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php'
+    document.getElementById("logoff").onclick = logoff;
     var data = [];
 })
 
@@ -50,7 +50,7 @@ function createTable (data){
                 var div = document.createElement("div");
                 div.setAttribute("class", "dropdown-menu");
                 div.setAttribute("aria-labelledby", "dropdownMenuButton");
-                
+
 
                 var a1 = document.createElement("a");
                 a1.setAttribute("class", "dropdown-item text-danger");
@@ -80,11 +80,16 @@ function destroy(appointmentid) {
         success:function(response){
             //alert("Usuario eliminado correctamente");
             if(alert("Cita eliminada correctamente")){}
-            else    window.location.reload(); 
+            else    window.location.reload();
         },
         error: function(result) {
             console.log("error")
         }
 
     });
+}
+
+function logoff(){
+    window.localStorage.removeItem("token");
+    window.location.href="index.html";
 }

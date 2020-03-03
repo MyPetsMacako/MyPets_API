@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    url_base = 'http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php'
+    document.getElementById("logoff").onclick = logoff;
     document.getElementById("button").onclick = required;
     var passMatch = false;
 
@@ -75,7 +75,7 @@ function send (){
             document.getElementById("warning").className = "text-success";
             document.getElementById('warning').innerHTML = "Mascota registrada correctamente";
             setTimeout(function () {
-                window.location.href="mainPanel%20-%20pets.html";
+                window.location.href="mainPanel-pets.html";
                 }, 3000);
         },
         error: function(result) {
@@ -104,7 +104,7 @@ function edit(){
                 document.getElementById("warning").className = "text-success";
                 document.getElementById('warning').innerHTML = "Mascota actualizada correctamente";
                 setTimeout(function () {
-                    window.location.href="mainPanel%20-%20pets.html";
+                    window.location.href="mainPanel-pets.html";
                  }, 3000);
             },
             error: function(result) {
@@ -216,4 +216,9 @@ function createMode(){
     console.log("Modo creación de mascota");
     document.getElementById('title').innerHTML = "Registrar nueva mascota:";
     document.getElementById('button').innerHTML = "Crear mascota";
+}
+
+function logoff(){
+    window.localStorage.removeItem("token");
+    window.location.href="index.html";
 }

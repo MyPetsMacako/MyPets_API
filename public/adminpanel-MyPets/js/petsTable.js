@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    url_base = 'http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php'
+    document.getElementById("logoff").onclick = logoff;
     //document.getElementById("table").onclick = send;
     //window.onload = send;
     var data = [];
@@ -127,12 +127,17 @@ function newAppointment(petid) {
 
     window.localStorage.setItem('RequestedPetId', petid);
 
-    window.location.href = 'mainPanel - new-apointment.html'
+    window.location.href = 'mainPanel-new-apointment.html'
 }
 
 function editPet(petid) {
     window.localStorage.setItem('RequestedPetId', petid);
     window.localStorage.setItem('RequestedView', "edit");
 
-    window.location.href = 'mainPanel - new-pet.html'
+    window.location.href = 'mainPanel-new-pet.html'
+}
+
+function logoff(){
+    window.localStorage.removeItem("token");
+    window.location.href="index.html";
 }

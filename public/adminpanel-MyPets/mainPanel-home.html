@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -41,7 +41,7 @@
         $token = window.localStorage.getItem("token");
         $.ajax({
             type: "GET",
-            url: "http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php/api/showUserFullname",
+            url: "http://mypetsapp.es/api/showUserFullname",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", $token);
             },
@@ -86,11 +86,11 @@
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">MyPets | Admin</div>
             <div class="list-group list-group-flush">
-                <a href="mainPanel%20-%20home.html" class="list-group-item list-group-item-action bg-light text-primary"><i class="fas fa-home"></i> Home</a>
-                <a href="mainPanel%20-%20users.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-users"></i> Usuarios</a>
-                <a href="mainPanel - pets.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-paw"></i> Mascotas</a>
-                <a href="mainPanel%20-%20qr.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-qrcode"></i> Ajustes QR</a>
-                <a href="mainPanel - apointments.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-calendar"></i> Citas</a>
+                <a href="mainPanel-home.html" class="list-group-item list-group-item-action bg-light text-primary"><i class="fas fa-home"></i> Home</a>
+                <a href="mainPanel-users.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-users"></i> Usuarios</a>
+                <a href="mainPanel-pets.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-paw"></i> Mascotas</a>
+                <a href="mainPanel-qr.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-qrcode"></i> Ajustes QR</a>
+                <a href="mainPanel-apointments.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-calendar"></i> Citas</a>
                 <!-- <a href="mainPanel%20-%20gallery.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-images"></i> Galería</a>
                 <a href="mainPanel%20-%20reports.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-flag"></i> Reportes</a> -->
                 <a id="logoff" class="list-group-item list-group-item-action bg-light text-danger"><i class="fas fa-times-circle"></i> Cerrar sesión</a>
@@ -112,7 +112,7 @@
                                 <div class="card-body">
                                     <h1 id="users" class="card-title">18</h1>
                                     <h3 class="card-text">Usuarios registrados</h3>
-                                    <a href="mainPanel%20-%20users.html" class="btn btn-outline-light">Ir</a>
+                                    <a href="mainPanel-users.html" class="btn btn-outline-light">Ir</a>
                                 </div>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                                 <div class="card-body">
                                     <h1 id="pets" class="card-title">33</h1>
                                     <h3 class="card-text">Mascotas registradas</h3>
-                                    <a href="mainPanel - pets.html" class="btn btn-outline-light">Ir</a>
+                                    <a href="mainPanel-pets.html" class="btn btn-outline-light">Ir</a>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
                                 <div class="card-body">
                                     <h1 id="appointments" class="card-title">15</h1>
                                     <h3 class="card-text">Citas añadidas</h3>
-                                    <a href="mainPanel - apointments.html" class="btn btn-outline-light">Ver</a>
+                                    <a href="mainPanel-apointments.html" class="btn btn-outline-light">Ver</a>
                                 </div>
                             </div>
                         </div>
@@ -151,7 +151,7 @@
                                 <div class="card-body">
                                     <h1 id="qrs" class="card-title">8</h1>
                                     <h3 class="card-text">QRs vínculados</h3>
-                                    <a href="mainPanel%20-%20qr.html" class="btn btn-outline-light">Ver</a>
+                                    <a href="mainPanel-qr.html" class="btn btn-outline-light">Ver</a>
                                 </div>
                             </div>
                         </div>
