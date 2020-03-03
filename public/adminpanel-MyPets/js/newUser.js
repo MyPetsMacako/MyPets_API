@@ -48,7 +48,7 @@ function get_edit_vars(){
 }
 
 function verifyPasswords(){
-    var password1 = document.getElementById("password").value;
+    var password1 = document.getElementById("password1").value;
     var password2 = document.getElementById("password2").value;
 
     if(password1==password2){
