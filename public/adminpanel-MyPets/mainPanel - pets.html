@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>MyPets | Panel Administrador</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="css/simple-sidebar.css" rel="stylesheet">
+
+        <script src="https://kit.fontawesome.com/df17e0efd7.js" crossorigin="anonymous"></script>
+
+        <style>
+            .bg-1 {
+                background-color: #4BAFDA;
+            }
+
+            .bg-2 {
+                background-color: #8CC152;
+            }
+
+            .bg-3 {
+                background-color: #48CFAD;
+            }
+
+            .bg-4 {
+                background-color: #AC92EC;
+            }
+
+            #optionsButton {
+                outline: none;
+            }
+            
+        </style>
+
+
+    </head>
+
+    <body>
+
+        <div class="d-flex" id="wrapper">
+
+            <!-- Sidebar -->
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading">MyPets | Admin</div>
+                <div class="list-group list-group-flush">
+                    <a href="mainPanel%20-%20home.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-home"></i> Home</a>
+                    <a href="mainPanel%20-%20users.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-users"></i> Usuarios</a>
+                    <a href="mainPanel - pets.html" class="list-group-item list-group-item-action bg-light text-primary"><i class="fas fa-paw"></i> Mascotas</a>
+                    <a href="mainPanel%20-%20qr.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-qrcode"></i> Ajustes QR</a>
+                    <a href="mainPanel - apointments.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-calendar"></i> Citas</a>
+                    <!-- <a href="mainPanel%20-%20gallery.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-images"></i> Galería</a>
+                    <a href="mainPanel%20-%20reports.html" class="list-group-item list-group-item-action bg-light"><i class="fas fa-flag"></i> Reportes</a> -->
+                    <a href="index.html" class="list-group-item list-group-item-action bg-light text-danger"><i class="fas fa-times-circle"></i> Cerrar sesión</a>
+                </div>
+            </div>
+            <!-- /#sidebar-wrapper -->
+
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <h1 class="mt-4">Lista de mascotas registradas:</h1>
+                        </div>
+                        <div class="form-group col-md-6 d-flex justify-content-end align-items-center">
+                            <button id="addUserButton" onclick="window.location.href = 'mainPanel%20-%20new-pet.html';" type="submit" class="btn btn-primary">Añadir mascota</button>
+                        </div>
+                    </div>
+
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">id del usuario</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Especie</th>
+                                <th scope="col">Raza</th>
+                                <th scope="col">Peso</th>
+                                <th scope="col">Color</th>
+                                <th scope="col">Fecha de nacimiento</th>
+                                <th scope="col">Foto</th>
+                                <th scope="col">Documentos</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableData">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- Bootstrap core JavaScript -->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Menu Toggle Script -->
+        <script>
+            $("#menu-toggle").click(function(e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+        </script>
+
+    </body>
+    <script src="js/petsTable.js" type="application/javascript"></script>
+    </html>

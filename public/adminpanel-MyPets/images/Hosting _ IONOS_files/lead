@@ -1,0 +1,14 @@
+
+
+
+
+
+
+#genericFeedbackButton{background-color:rgb(255,255,255);border:1px solid rgb(11,157,204);-webkit-border-bottom-left-radius:4px;border-bottom-left-radius:4px;-webkit-border-bottom-right-radius:4px;border-bottom-right-radius:4px;-moz-border-radius-bottomleft:4px;-moz-border-radius-bottomright:4px;border-top:0;color:rgb(11,157,204);font-family:Arial,sans-serif;font-size:14px;line-height:14px;padding:6px 30px;position:fixed;right:-49px;text-decoration:none;top:50%;-moz-transform:rotate(90deg);-ms-transform:rotate(90deg);-o-transform:rotate(90deg);-webkit-transform:rotate(90deg);transform:rotate(90deg);-webkit-transform-origin:50% 49%;z-index:180;}#genericFeedbackButton:hover{background-color:rgb(8,129,186);color:rgb(255,255,255);cursor:pointer;text-decoration:none;}#genericFeedbackButton.hidden{display:none;}.mobileapp #content{padding-bottom:0;padding-top:0;}#genericFeedbackLink:hover{cursor:pointer;text-decoration:none;}
+.responsive-small .content-card hr.message-separator.success::before,.responsive-small .content-card hr.message-separator.positive::before,.responsive-small .content-card hr.message-separator.confirmation::before{content:none;}.responsive-small .badge{top:0;}
+
+
+.svg-visual{margin-bottom:12px;margin-top:12px;width:auto;}.svg-visual--small{max-height:64px;}.svg-visual--medium{height:96px;}.svg-visual--large{height:128px;}.svg-visual--align-center{margin:12px auto;}
+
+
+.responsive-small .action-buttons{display:inherit;}@media print{body,.content-section{background-color:#fff;border:initial!important;padding-top:0!important;}body,label{color:#000!important;font-size:15px!important;}.oao-navi-navigation,header .backwards-action-icon,.page-navigation,div[data-if-not-page],#footer-container{display:none!important;}#content{padding:0!important;}.header-section{padding-left:16px!important;margin-bottom:42px!important;}.content-section{padding-left:16px!important;}.content-section:last-child,.content-section.last-child{padding-bottom:0!important;}.header-section header,.footer-section .content,.content-section .content{padding-right:16px!important;padding-left:0!important;max-width:initial!important;}.proximity-section{margin-bottom:20px!important;}.navigation-tabs{box-shadow:initial!important;}.tab-items li:not(.tab-item-opener),.tab-items .tab-item-opener:after{display:none!important;}.tab-items .tab-item-opener{border:initial!important;padding-left:16px!important;}.tab-items .tab-item-opener span{padding:0 0 1em!important;border:initial!important;font-size:20px!important;}.content img{width:auto!important;max-width:100%!important;}a.trigger-pointer{background:initial!important;border:initial!important;color:rgb(0,0,0)!important;padding:initial!important;font-style:italic!important;display:inline!important;}a.trigger-pointer:before{display:none!important;}.subheadline{font-size:17px!important;}}

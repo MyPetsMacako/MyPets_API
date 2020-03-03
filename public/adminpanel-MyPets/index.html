@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MyPets | Panel Administrador - Login</title>
+    
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <script>
+        window.onload = function() {
+        document.getElementById('warning').style.display = 'none';
+        };
+    </script>
+
+    <!-- <script>document.getElementById("warning").style.visibility = "hidden"</script> -->
+    
+    <style type="text/css">
+        .login-form {
+            width: 340px;
+            margin: 50px auto;
+        }
+
+        .form {
+            margin-bottom: 15px;
+            background: #f7f7f7;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+        
+
+        .login-form h2 {
+            margin: 0 0 15px;
+        }
+
+        .form-control,
+        .btn {
+            min-height: 38px;
+            border-radius: 2px;
+        }
+
+        .btn {
+            font-size: 15px;
+            font-weight: bold;
+        }
+        
+        body{
+            background-image: url(images/login%20background.jpg);
+            background-position: center;
+            
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="login-form">
+        <div class="form">
+            <h2 class="text-center">MyPets</h2>
+            <h3 class="text-center">Panel de administrador</h3>
+            <div class="form-group">
+                <input type="text" name="email" id="email" class="form-control" placeholder="Email" required="required">
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" id="password" class="form-control" placeholder="Contraseña" required="required">
+            </div>
+            <div class="form-group">
+                <button id="button" class="btn btn-primary btn-block">Iniciar sesión</button>
+            </div>
+            <h4 id="warning" class="text-center text-danger">Acceso denegado</h4>
+        </div>
+    </div>
+</body>
+    
+    <script src="js/login.js" type="application/javascript"></script>
+    <script>
+        var inputEmail = document.getElementById("email");
+        inputEmail.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("button").click();
+        }
+        });
+        var inputPass = document.getElementById("password");
+        inputPass.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("button").click();
+        }
+        });
+    </script>
+    
+</html>                                		                            
