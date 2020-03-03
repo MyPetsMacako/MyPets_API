@@ -61,7 +61,7 @@ function get_edit_vars(){
 
 function send (){
     var data = get_vars();
-    print(data)
+    console.log(data)
     $token = window.localStorage.getItem("token");
     $.ajax({
         type: "POST",
@@ -85,8 +85,8 @@ function send (){
         }
 
     });
-    
-    
+
+
 }
 
 function edit(){
@@ -112,13 +112,13 @@ function edit(){
                 document.getElementById("warning").className = "text-danger";
                 document.getElementById('warning').innerHTML = result.responseJSON.message;
             }
-    
+
         });
 
         /*document.getElementById('warning').style.display = 'block';
         document.getElementById("warning").className = "text-danger";
         document.getElementById('warning').innerHTML = result.responseJSON.message;*/
-        
+
 }
 
 
@@ -143,7 +143,7 @@ function required(){
         }
     }
 }
-    
+
 
 function editMode($requestedUserId){
     console.log("Modo edición de mascota");
@@ -178,7 +178,7 @@ function fillTextFields(data){
     document.getElementById('name').value = data["name"];
     $selectValue = "";
     switch (data["species"]) {
-        
+
         case "Perro":
             $selectValue = "1";
             break;
@@ -190,15 +190,15 @@ function fillTextFields(data){
         case "Roedor":
             $selectValue = "3";
             break;
-        
+
         case "Ave":
             $selectValue = "4";
             break;
-        
+
         case "Reptil":
             $selectValue = "5";
             break;
-    
+
         default:
             $selectValue = "1";
             break;
@@ -209,7 +209,7 @@ function fillTextFields(data){
     document.getElementById('colour').value = data["color"];
     document.getElementById('weight').value = data["weight"];
     document.getElementById('birth').value = data["birth_date"];
-    
+
 }
 
 function createMode(){
