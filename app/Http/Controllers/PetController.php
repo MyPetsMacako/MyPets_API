@@ -19,7 +19,7 @@ class PetController extends Controller
                         ->get();
 
         $photo = $pet[0]["photo"];
-        $path = "http://mypetsapp.es/storage/app/";
+        $path = "http://mypetsapp.es/storage/";
         $photo = $path . $photo;
         $pet[0]["photo"] = $photo;
         return response()->json(
