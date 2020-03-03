@@ -8,7 +8,7 @@ $(document).ready(function(){
 function send (){
     $.ajax({
         type: "GET",
-        url: "http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php/api/getQRData/"+$petid,
+        url: "http://mypetsapp.es/api/getQRData/"+$petid,
         success:function(data){
             console.log(data);
             fillData(data);
@@ -27,6 +27,6 @@ function fillData(data)
     document.getElementById('tel').innerHTML = data[0]["tel_Number"];
     document.getElementById('mail').innerHTML = data[0]["email"];
     document.getElementById('avatar').src = data[0]["photo"]
-    document.getElementById("telhref").href="tel:"+data[0]["tel_Number"]; 
-    document.getElementById("mailhref").href="mailto:"+data[0]["email"]+"?subject=He%20encontrado%20a%20tu%20mascota"; 
+    document.getElementById("telhref").href="tel:"+data[0]["tel_Number"];
+    document.getElementById("mailhref").href="mailto:"+data[0]["email"]+"?subject=He%20encontrado%20a%20tu%20mascota";
 }
