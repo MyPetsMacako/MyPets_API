@@ -25,7 +25,7 @@ function get_vars(){
     var colour = document.getElementById("colour").value;
     var weight = document.getElementById("weight").value;
     var birth = document.getElementById("birth").value;
-    var image = document.getElementById("photo").src;
+    var image = document.getElementById("photo").image;
 
     var data = {
         "user_id" : user_id,
