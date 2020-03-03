@@ -82,7 +82,7 @@ function send(){
                 document.getElementById("warning").className = "text-success";
                 document.getElementById('warning').innerHTML = "Usuario registrado correctamente";
                 setTimeout(function () {
-                    window.location.href="mainPanel%20-%20users.html";
+                    window.location.href="mainPanel-users.html";
                  }, 3000);
             },
             error: function(result) {
