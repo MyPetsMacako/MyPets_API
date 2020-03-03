@@ -22,10 +22,10 @@ function send (){
 
 function fillData(data)
 {
-    document.getElementById('petname').innerHTML = data[0]["name"];
-    document.getElementById('ownername').innerHTML = data[0]["fullName"];
-    document.getElementById('tel').innerHTML = data[0]["tel_Number"];
-    document.getElementById('mail').innerHTML = data[0]["email"];
+    document.getElementById('petname').innerHTML = "Nombre: "+data[0]["name"];
+    document.getElementById('ownername').innerHTML = "Dueño: "+data[0]["fullName"];
+    document.getElementById('tel').innerHTML = "Tlf: "+data[0]["tel_Number"];
+    document.getElementById('mail').innerHTML = "Email: "+data[0]["email"];
     document.getElementById('avatar').src = data[0]["photo"]
     document.getElementById("telhref").href="tel:"+data[0]["tel_Number"];
     document.getElementById("mailhref").href="mailto:"+data[0]["email"]+"?subject=He%20encontrado%20a%20tu%20mascota";
