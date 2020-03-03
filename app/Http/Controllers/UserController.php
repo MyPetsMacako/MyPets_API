@@ -269,6 +269,9 @@ class UserController extends Controller
         $data = ['email' => $email];
         $user = User::where($data)->first();
         $photo = Storage::putFileAs('Users', new File($request->image), "$user->id.jpg");
+        $user->fullName = $request->fullName;
+        $user->nickname = $request->nickname;
+        $user->email = $request->email;
         $user->photo = $photo;
         $user->tel_number = $request->tel_number;
         $user->save();
