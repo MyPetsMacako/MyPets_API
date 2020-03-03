@@ -44,7 +44,7 @@ function createTable (data){
                     case 2:
                         columna2.innerHTML = "User";
                         break;
-                
+
                     default:
                         columna2.innerHTML = "error";
                         break;
@@ -59,7 +59,7 @@ function createTable (data){
                     case 1:
                         columna3.innerHTML = "Si";
                         break;
-                
+
                     default:
                         columna3.innerHTML = "error";
                         break;
@@ -100,13 +100,13 @@ function createTable (data){
                     case 1:
                         a1.innerHTML = "Desbanear";
                         break;
-                
+
                     default:
                         a1.innerHTML = "error";
                         break;
                 }
                 a1.setAttribute('onclick', 'ban('+userid+')');
-                
+
                 var a2 = document.createElement("a");
                 a2.setAttribute("class", "dropdown-item text-danger");
                 a2.setAttribute("href", "#");
@@ -124,14 +124,14 @@ function createTable (data){
                     case 2:
                         a3.innerHTML = "Ascender";
                         break;
-                
+
                     default:
                         a3.innerHTML = "error";
                         break;
                 }
                 a3.setAttribute('onclick', 'role('+userid+')');
                 //a3.innerHTML = "Degradar";
-                
+
 
                 lista.appendChild(tr);
                 tr.appendChild(columna1);
@@ -145,7 +145,7 @@ function createTable (data){
                 div.appendChild(a);
                 div.appendChild(a1);
                 div.appendChild(a2);
-                div.appendChild(a3);         
+                div.appendChild(a3);
     }
     console.log("Tabla creada");
 }
@@ -162,7 +162,7 @@ function destroy(userid) {
         success:function(response){
             //alert("Usuario eliminado correctamente");
             if(alert("Usuario eliminado correctamente")){}
-            else    window.location.reload(); 
+            else    window.location.reload();
         },
         error: function(result) {
             console.log("error")
@@ -176,14 +176,14 @@ function ban(userid) {
 
     $.ajax({
         type: "POST",
-        url: "http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php/api/ban/"+userid,
+        url: "http://mypetsapp.es/api/ban/"+userid,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },
         success:function(response){
             //alert("Usuario eliminado correctamente");
             if(alert("Acción completada con éxito")){}
-            else    window.location.reload(); 
+            else    window.location.reload();
         },
         error: function(result) {
             console.log("error")
@@ -197,14 +197,14 @@ function role(userid) {
 
     $.ajax({
         type: "POST",
-        url: "http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php/api/role/"+userid,
+        url: "http://mypetsapp.es/api/role/"+userid,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },
         success:function(response){
             //alert("Usuario eliminado correctamente");
             if(alert("Acción completada con éxito")){}
-            else    window.location.reload(); 
+            else    window.location.reload();
         },
         error: function(result) {
             console.log("error")
@@ -214,7 +214,7 @@ function role(userid) {
 }
 
 function editUser(userid) {
-    
+
     window.localStorage.setItem('RequestedUserId', userid);
     window.localStorage.setItem('RequestedView', "edit");
 
