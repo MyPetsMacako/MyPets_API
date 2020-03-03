@@ -130,6 +130,7 @@ class PetController extends Controller
         $colors = array();
         $birth_dates = array();
         $images = array();
+        $documents= array();
         if (isset($pets)){
             foreach ($pets as $key => $pet) {
                 array_push($ids, $pet->id);
@@ -140,11 +141,13 @@ class PetController extends Controller
                 array_push($birth_dates, $pet->birth_date);
                 $file = "$path" .   $pet->photo;
                 array_push($images, $file);
+                $file = "$path" .   $pet->document;
+                array_push($documents, $file);
             }
         }
 
         return response()->json(
-            ["ids"=>$ids, "names"=>$names, "breeds"=>$breeds,"weights"=>$weights,"colors"=>$colors,"birth_dates"=>$birth_dates, "images" => $images]
+            ["ids"=>$ids, "names"=>$names, "breeds"=>$breeds,"weights"=>$weights,"colors"=>$colors,"birth_dates"=>$birth_dates, "images" => $images, "documents" => $documents]
         , 200);
     }
 
