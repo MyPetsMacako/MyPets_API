@@ -93,9 +93,9 @@ class PetController extends Controller
         else
         {
             $qrContent = $this->QRContent($pet);
-            return response()->json(
-                $qrContent
-            ,200);
+            return response()->json([
+                "qrContent" => $qrContent
+            ],200);
         }
     }
 
@@ -266,6 +266,27 @@ class PetController extends Controller
 
             return response()->json([
                 "message" => 'Solo puedes eliminar tus mascotas'
+            ], 401);
+
+        }
+    }
+
+    public function adminDestroy($id)
+    {
+        $pet = Pet::where('id', '=', $id)->first();
+
+        if($pet!= NULL)
+        {
+            $pet->delete();
+
+            return response()->json([
+                "message" => 'Mascota eliminada correctamente'
+            ], 200);
+
+        }else{
+
+            return response()->json([
+                "message" => 'Esa mascota no existe'
             ], 401);
 
         }

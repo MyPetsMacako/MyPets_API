@@ -75,7 +75,7 @@ function createTable (data){
                 a1.setAttribute("class", "dropdown-item text-danger");
                 a1.setAttribute('onclick', 'destroy('+petid+')');
                 a1.innerHTML = "Eliminar";
-                
+
                 var a2 = document.createElement("a");
                 a2.setAttribute("class", "dropdown-item text-success");
                 //a2.setAttribute("onclick", "window.location.href = 'mainPanel - new-apointment.html'");
@@ -96,8 +96,8 @@ function createTable (data){
                 tr.appendChild(columna11);
                 columna11.appendChild(div);
                 div.appendChild(a);
-                div.appendChild(a1);  
-                div.appendChild(a2); 
+                div.appendChild(a1);
+                div.appendChild(a2);
     }
 }
 
@@ -106,14 +106,14 @@ function destroy(petid) {
 
     $.ajax({
         type: "DELETE",
-        url: "http://mypetsapp.es/api/deletePet/"+petid,
+        url: "http://mypetsapp.es/api/adminDeletePet/"+petid,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },
         success:function(response){
             //alert("Usuario eliminado correctamente");
             if(alert("Mascota eliminada correctamente")){}
-            else    window.location.reload(); 
+            else    window.location.reload();
         },
         error: function(result) {
             console.log("error")
