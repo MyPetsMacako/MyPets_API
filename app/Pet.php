@@ -93,6 +93,11 @@ public function register(Request $request)
                 $pet->color = $request->color;
                 $pet->weight = $request->weight;
                 $pet->birth_date = $request->birth_date;
+                if ($request->image != NULL)
+                {
+                    $photo = Storage::putFileAs('Pets', new File($request->image), "$user->id$pet->name.jpg");
+                    $pet->photo = $photo;
+                }
                 $pet->save();
             }
         }
