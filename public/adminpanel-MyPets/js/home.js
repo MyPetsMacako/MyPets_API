@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    url_base = 'http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php'
     document.getElementById("logoff").onclick = logoff;
     var data = [];
 })
@@ -10,7 +9,7 @@ function getData (){
     $token = window.localStorage.getItem("token");
     $.ajax({
         type: "GET",
-        url: "http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php/api/adminPanelInfo",
+        url: "http://mypetsapp.es/api/adminPanelInfo",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },

@@ -72,7 +72,7 @@ function send(){
     if (passMatch == true){
         $.ajax({
             type: "POST",
-            url: "http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php/api/register",
+            url: "http://mypetsapp.es/api/register",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", $token);
             },
@@ -106,7 +106,7 @@ function edit(){
     console.log($token);
         $.ajax({
             type: "POST",
-            url: "http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php/api/adminUpdate/"+$requestedUserId,
+            url: "http://mypetsapp.es/api/adminUpdate/"+$requestedUserId,
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", $token);
             },
@@ -170,7 +170,7 @@ function getRequestedData($requestedUserId){
     $token = window.localStorage.getItem("token");
     $.ajax({
         type: "GET",
-        url: "http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php/api/requestedUserInfo/"+$requestedUserId,
+        url: "http://mypetsapp.es/api/requestedUserInfo/"+$requestedUserId,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },

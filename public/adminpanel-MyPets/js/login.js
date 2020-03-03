@@ -21,7 +21,7 @@ function send (){
     var data = get_vars();
     $.ajax({
         type: "POST",
-        url: "http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php/api/adminLogin",
+        url: "http://mypetsapp.es/api/adminLogin",
         data: data,
         success:function(response){
             window.localStorage.setItem('token', response["token"]);

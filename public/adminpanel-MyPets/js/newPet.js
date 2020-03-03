@@ -65,7 +65,7 @@ function send (){
     $token = window.localStorage.getItem("token");
     $.ajax({
         type: "POST",
-        url: "http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php/api/petsRegister",
+        url: "http://mypetsapp.es/api/petsRegister",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },
@@ -94,7 +94,7 @@ function edit(){
     $token = window.localStorage.getItem("token");
         $.ajax({
             type: "POST",
-            url: "http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php/api/updatePetsForAdmin/"+$requestedPetId,
+            url: "http://mypetsapp.es/api/updatePetsForAdmin/"+$requestedPetId,
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", $token);
             },
@@ -158,7 +158,7 @@ function getRequestedData($requestedUserId){
     $token = window.localStorage.getItem("token");
     $.ajax({
         type: "GET",
-        url: "http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php/api/adminRequestedPetInfo/"+$requestedUserId,
+        url: "http://mypetsapp.es/api/adminRequestedPetInfo/"+$requestedUserId,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },

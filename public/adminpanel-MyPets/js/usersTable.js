@@ -12,7 +12,7 @@ function getData (){
     $token = window.localStorage.getItem("token");
     $.ajax({
         type: "GET",
-        url: "http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php/api/showUsersData",
+        url: "http://mypetsapp.es/api/showUsersData",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },
@@ -155,7 +155,7 @@ function destroy(userid) {
 
     $.ajax({
         type: "DELETE",
-        url: "http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php/api/deleteUser/"+userid,
+        url: "http://mypetsapp.es/api/deleteUser/"+userid,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },

@@ -26,7 +26,7 @@ function send (){
     $token = window.localStorage.getItem("token");
     $.ajax({
         type: "POST",
-        url: "http://localhost:8888/laravel-ivanodp/MyPets_API/public/index.php/api/createAppointment",
+        url: "http://mypetsapp.es/api/createAppointment",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },
