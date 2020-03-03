@@ -28,7 +28,7 @@ function get_vars(){
         "fullname" : fullname,
         "nickname" : nickname,
         "email" : email,
-        "password1" : password1,
+        "password" : password1,
         "password2" : password2
     }
     return data;
@@ -48,7 +48,7 @@ function get_edit_vars(){
 }
 
 function verifyPasswords(){
-    var password1 = document.getElementById("password1").value;
+    var password1 = document.getElementById("password").value;
     var password2 = document.getElementById("password2").value;
 
     if(password1==password2){
