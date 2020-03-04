@@ -57,7 +57,16 @@ public function register(Request $request)
                     $user_email = $decoded_token->email;
                     $user = User::where('email', '=', $user_email)->first();
                     $user_id = $user->id;
+                    return response()->json([
+                        "qrContent" => "bien"
+                    ],200);
 
+
+                } catch (\Throwable $th) {
+                    return response()->json([
+                        "qrContent" => "mal"
+                    ],200);
+                }
                     $pet = new self();
                     $pet->user_id = $user_id;
                     $pet->name = $request->name;
@@ -67,15 +76,6 @@ public function register(Request $request)
                     $pet->weight = $request->weight;
                     $pet->birth_date = $request->birth_date;
                     $pet->save();
-                    return response()->json([
-                        "qrContent" => "bien"
-                    ],200);
-                } catch (\Throwable $th) {
-                    return response()->json([
-                        "qrContent" => "mal"
-                    ],200);
-                }
-
                     if ($request->image != NULL)
                     {
                         $photo = Storage::putFileAs('Pets', new File($request->image), "$user->id$pet->name.jpg");
