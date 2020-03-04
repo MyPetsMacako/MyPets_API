@@ -82,8 +82,12 @@ class PetController extends Controller
     public function store(Request $request)
     {
         $pet = new Pet();
-        $pet = $pet->register($request);
+        $pet->register($request);
 
+        return response()->json([
+            "Success" => "Mascota creada"
+        ],200);
+        /*
         if ($pet == "error")
         {
             return response()->json([
@@ -97,6 +101,7 @@ class PetController extends Controller
                 "qrContent" => $qrContent
             ],200);
         }
+        */
     }
 
     public function QRContent($pet): String

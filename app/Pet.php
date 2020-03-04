@@ -76,7 +76,7 @@ public function register(Request $request)
             $pet->birth_date = $request->birth_date;
             $pet->save();
             $petId = $pet->id;
-            return($petId);
+            //return($petId);
 
         } else {
 
