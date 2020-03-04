@@ -82,7 +82,7 @@ class PetController extends Controller
     public function store(Request $request)
     {
         $pet = new Pet();
-        $pet->register($request);
+        $pet = $pet->register($request);
 var_dump($pet);
         return response()->json([
             "Success" => "Mascota creada"
