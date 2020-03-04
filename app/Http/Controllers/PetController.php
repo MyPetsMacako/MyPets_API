@@ -177,7 +177,7 @@ class PetController extends Controller
                 array_push($birth_dates, $pet->birth_date);
                 $file = "$path" .   $pet->photo;
                 array_push($images, $file);
-                $file = "$path" .   $pet->document;
+                $file = "$path" .   $pet->documents;
                 array_push($documents, $file);
             }
         }
