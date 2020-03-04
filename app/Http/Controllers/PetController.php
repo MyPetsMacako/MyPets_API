@@ -121,7 +121,6 @@ class PetController extends Controller
         $petId = array_pop($result);
 
         $pet = Pet::where('id', '=', $petId)->first();
-        var_dump($pet);exit;
 
         if ($request->qr != NULL)
         {
