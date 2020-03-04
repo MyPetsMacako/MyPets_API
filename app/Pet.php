@@ -57,11 +57,18 @@ public function register(Request $request)
                     $user_email = $decoded_token->email;
                     $user = User::where('email', '=', $user_email)->first();
                     $user_id = $user->id;
+                    $pet = new self();
+                    $pet->user_id = $user_id;
+                    $pet->name = "pep";
+                    $pet->species = "pep";
+                    $pet->breed = "pep";
+                    $pet->color = "guardiola";
+                    $pet->weight = "22";
+                    $pet->birth_date = "2018-05-12";
+                    $pet->save();
                     return response()->json([
                         "qrContent" => "bien"
                     ],200);
-
-
                 } catch (\Throwable $th) {
                     return response()->json([
                         "qrContent" => "mal"
