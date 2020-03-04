@@ -50,9 +50,6 @@ public function register(Request $request)
     {
 
             if (($request->user_id) == NULL) {
-                return response()->json([
-                    "qrContent" => "entra"
-                ],200);
                 try {
                     $request_token = $request->header('Authorization');
                     $token = new token();
@@ -79,11 +76,11 @@ public function register(Request $request)
                         $document = Storage::putFileAs('Documents', new File($request->document), "$user->id$pet->name.pdf");
                         $pet->document = $document;
                     }
+                    $petId = $pet->id;
+                    $pet->save();
                     return response()->json([
                         "qrContent" => "bien"
                     ],200);
-                    $petId = $pet->id;
-                    $pet->save();
                 } catch (\Throwable $th) {
                     return response()->json([
                         "qrContent" => "mal"
