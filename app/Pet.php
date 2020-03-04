@@ -48,7 +48,9 @@ class Pet extends Model
 
 public function register(Request $request)
     {
-
+        return response()->json(
+            $request->user_id
+        ,200);
         if (($request->user_id) == NULL) {
             var_dump("Metodo1");exit;
             $request_token = $request->header('Authorization');
@@ -87,7 +89,9 @@ public function register(Request $request)
             //return($petId);
 
         } else {
-
+            return response()->json(
+                $request->user_id
+            ,200);
             $user = User::where('id', '=', $request->user_id)->first();
 
             var_dump("Metodo2");exit;
