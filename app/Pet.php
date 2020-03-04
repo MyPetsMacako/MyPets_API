@@ -106,7 +106,7 @@ public function register(Request $request)
             }
         } catch (\Throwable $th) {
             return response()->json([
-                "message" => 'No'
+                "message" => $request->user_id
             ],401);
         }
 
