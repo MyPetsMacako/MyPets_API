@@ -62,6 +62,13 @@ public function register(Request $request)
             $pet->species = $request->species;
             $pet->breed = $request->breed;
             $pet->color = $request->color;
+            $pet->weight = $request->weight;
+            $pet->birth_date = $request->birth_date;
+            $pet->save();
+            return response()->json([
+                "Success" => "Llega"
+            ],200);
+            /*
             if ($request->image != NULL)
             {
                 $photo = Storage::putFileAs('Pets', new File($request->image), "$user->id$pet->name.jpg");
@@ -72,9 +79,8 @@ public function register(Request $request)
                 $document = Storage::putFileAs('Documents', new File($request->document), "$user->id$pet->name.pdf");
                 $pet->document = $document;
             }
-            $pet->weight = $request->weight;
-            $pet->birth_date = $request->birth_date;
-            $pet->save();
+            */
+
             $petId = $pet->id;
             //return($petId);
 
