@@ -7,7 +7,7 @@ use App\Pet;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
-require "..\resources\phpqrcode\qrlib.php";
+require ".\resources\phpqrcode\qrlib.php";
 
 
 class PetController extends Controller
