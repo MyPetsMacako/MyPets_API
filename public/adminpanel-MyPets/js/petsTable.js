@@ -53,14 +53,16 @@ function createTable (data){
                 columna9.innerHTML = data[i]["photo"];
                 var columna10 = document.createElement("th")
                 columna10.innerHTML = data[i]["documents"];
-                var columna11 = document.createElement("button")
-                columna11.innerHTML = "•••";
-                columna11.setAttribute("class", "btn btn-info dropdown-toggle");
-                columna11.setAttribute("type", "button");
-                columna11.setAttribute("id", "dropdownMenuButton");
-                columna11.setAttribute("data-toggle", "dropdown");
-                columna11.setAttribute("aria-haspopup", "true");
-                columna11.setAttribute("aria-expanded", "false");
+                var columna11 = document.createElement("th")
+                columna11.innerHTML = data[i]["qr"];
+                var columna12 = document.createElement("button")
+                columna12.innerHTML = "•••";
+                columna12.setAttribute("class", "btn btn-info dropdown-toggle");
+                columna12.setAttribute("type", "button");
+                columna12.setAttribute("id", "dropdownMenuButton");
+                columna12.setAttribute("data-toggle", "dropdown");
+                columna12.setAttribute("aria-haspopup", "true");
+                columna12.setAttribute("aria-expanded", "false");
 
                 var div = document.createElement("div");
                 div.setAttribute("class", "dropdown-menu");
@@ -94,7 +96,8 @@ function createTable (data){
                 tr.appendChild(columna9);
                 tr.appendChild(columna10);
                 tr.appendChild(columna11);
-                columna11.appendChild(div);
+                tr.appendChild(columna12);
+                columna12.appendChild(div);
                 div.appendChild(a);
                 div.appendChild(a1);
                 div.appendChild(a2);

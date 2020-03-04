@@ -67,11 +67,12 @@ public function register(Request $request)
                 $photo = Storage::putFileAs('Pets', new File($request->image), "$user->id$pet->name.jpg");
                 $pet->photo = $photo;
             }
+            /*
             if ($request->document != NULL)
             {
                 $document = Storage::putFileAs('Documents', new File($request->document), "$user->id$pet->name.pdf");
                 $pet->document = $document;
-            }
+            }*/
             $pet->weight = $request->weight;
             $pet->birth_date = $request->birth_date;
             $pet->save();
