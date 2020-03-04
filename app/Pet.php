@@ -59,12 +59,12 @@ public function register(Request $request)
                     $user_id = $user->id;
                     $pet = new self();
                     $pet->user_id = $user_id;
-                    $pet->name = "pep";
-                    $pet->species = "pep";
-                    $pet->breed = "pep";
-                    $pet->color = "guardiola";
-                    $pet->weight = "22";
-                    $pet->birth_date = "2018-05-12";
+                    $pet->name = $request->name;
+                    $pet->species = $request->species;
+                    $pet->breed = $request->breed;
+                    $pet->color = $request->color;
+                    $pet->weight = $request->weight;
+                    $pet->birth_date = "2018-04-19";
                     $pet->save();
                     $petId = $pet->id;
                     return $petId;
