@@ -83,7 +83,7 @@ class PetController extends Controller
     {
         $pet = new Pet();
         $pet->register($request);
-
+var_dump($pet);
         return response()->json([
             "Success" => "Mascota creada"
         ],200);
