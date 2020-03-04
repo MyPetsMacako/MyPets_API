@@ -26,6 +26,7 @@ class CreatePetsTable extends Migration
             $table->date('birth_date');
             $table->string('photo')->nullable();
             $table->string('documents')->nullable();
+            $table->string('qr')->nullable();
             $table->timestamps();
         });
     }

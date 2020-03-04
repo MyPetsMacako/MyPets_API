@@ -107,6 +107,27 @@ class PetController extends Controller
         return $qrContent;
     }
 
+    public function saveQR(Request $request)
+    {
+        $authorization = $request->header('Authorization');
+        $token = new token();
+        $decoded_token = $token->decode($authorization);
+        $email = $decoded_token->email;
+        $data = ['email' => $email];
+        $user = User::where($data)->first();
+
+        $url = $request->url;
+        $result = explode("/",$url);
+
+        if ($request->qr != NULL)
+        {
+            $photo = Storage::putFileAs('QR', new File($request->qr), "qr_"+"$user->id$pet->name.jpg");
+            $pet->qr = $photo;
+        } else {
+            print("error");
+        }
+    }
+
     /**
      * Display the specified resource.
      *
@@ -171,7 +192,6 @@ class PetController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $authorization = $request->header('Authorization');
         $token = new token();
         $decoded_token = $token->decode($authorization);

@@ -19,7 +19,7 @@ class CreateQrTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('pet_id');
             $table->foreign('pet_id')->references('id')->on('pets');
-            $table->unsignedInteger('url');
+            $table->string('url');
             $table->boolean('is_linked');
             $table->timestamps();
         });
