@@ -64,7 +64,7 @@ public function register(Request $request)
                     $pet->breed = $request->breed;
                     $pet->color = $request->color;
                     $pet->weight = $request->weight;
-                    $pet->birth_date = "2018-04-19";
+                    $pet->birth_date = $request->birth_date;
                     $pet->save();
                     $petId = $pet->id;
                     return $petId;
