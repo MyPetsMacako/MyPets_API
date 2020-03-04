@@ -48,43 +48,49 @@ class Pet extends Model
 
 public function register(Request $request)
     {
-        try {
-            if (($request->user_id) == NULL) {
-                $request_token = $request->header('Authorization');
-                $token = new token();
-                $decoded_token = $token->decode($request_token);
-                $user_email = $decoded_token->email;
-                $user = User::where('email', '=', $user_email)->first();
-                $user_id = $user->id;
 
-                $pet = new self();
-                $pet->user_id = $user_id;
-                $pet->name = $request->name;
-                $pet->species = $request->species;
-                $pet->breed = $request->breed;
-                $pet->color = $request->color;
-                if ($request->image != NULL)
-                {
-                    $photo = Storage::putFileAs('Pets', new File($request->image), "$user->id$pet->name.jpg");
-                    $pet->photo = $photo;
-                }
-                if ($request->document != NULL)
-                {
-                    $document = Storage::putFileAs('Documents', new File($request->document), "$user->id$pet->name.pdf");
-                    $pet->document = $document;
-                }
-                $pet->weight = $request->weight;
-                $pet->birth_date = $request->birth_date;
-                $pet->save();
-                $petId = $pet->id;
+            if (($request->user_id) == NULL) {
                 return response()->json([
-                    "qrContent" => "bien"
-                ],200);            }
-        } catch (\Throwable $th) {
-            return response()->json([
-                "qrContent" => "mal"
-            ],200);
-        }
+                    "qrContent" => "entra"
+                ],200);
+                try {
+                    $request_token = $request->header('Authorization');
+                    $token = new token();
+                    $decoded_token = $token->decode($request_token);
+                    $user_email = $decoded_token->email;
+                    $user = User::where('email', '=', $user_email)->first();
+                    $user_id = $user->id;
+
+                    $pet = new self();
+                    $pet->user_id = $user_id;
+                    $pet->name = $request->name;
+                    $pet->species = $request->species;
+                    $pet->breed = $request->breed;
+                    $pet->color = $request->color;
+                    $pet->weight = $request->weight;
+                    $pet->birth_date = $request->birth_date;
+                    if ($request->image != NULL)
+                    {
+                        $photo = Storage::putFileAs('Pets', new File($request->image), "$user->id$pet->name.jpg");
+                        $pet->photo = $photo;
+                    }
+                    if ($request->document != NULL)
+                    {
+                        $document = Storage::putFileAs('Documents', new File($request->document), "$user->id$pet->name.pdf");
+                        $pet->document = $document;
+                    }
+                    return response()->json([
+                        "qrContent" => "bien"
+                    ],200);
+                    $petId = $pet->id;
+                    $pet->save();
+                } catch (\Throwable $th) {
+                    return response()->json([
+                        "qrContent" => "mal"
+                    ],200);
+                }
+            }
+
          if ($request->user_id != NULL) {
 
             $user = User::where('id', '=', $request->user_id)->first();
