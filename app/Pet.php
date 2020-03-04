@@ -66,9 +66,8 @@ public function register(Request $request)
                     $pet->weight = "22";
                     $pet->birth_date = "2018-05-12";
                     $pet->save();
-                    return response()->json([
-                        "qrContent" => "bien"
-                    ],200);
+                    $petId = $pet->id;
+                    return $petId;
                 } catch (\Throwable $th) {
                     return response()->json([
                         "qrContent" => "mal"
