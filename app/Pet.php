@@ -48,58 +48,67 @@ class Pet extends Model
 
 public function register(Request $request)
     {
-        if (($request->user_id) == NULL) {
-            $request_token = $request->header('Authorization');
-            $token = new token();
-            $decoded_token = $token->decode($request_token);
-            $user_email = $decoded_token->email;
-            $user = User::where('email', '=', $user_email)->first();
-            $user_id = $user->id;
+        try {
+            if (($request->user_id) == NULL) {
+                $request_token = $request->header('Authorization');
+                $token = new token();
+                $decoded_token = $token->decode($request_token);
+                $user_email = $decoded_token->email;
+                $user = User::where('email', '=', $user_email)->first();
+                $user_id = $user->id;
 
-            $pet = new self();
-            $pet->user_id = $user_id;
-            $pet->name = $request->name;
-            $pet->species = $request->species;
-            $pet->breed = $request->breed;
-            $pet->color = $request->color;
-            if ($request->image != NULL)
-            {
-                $photo = Storage::putFileAs('Pets', new File($request->image), "$user->id$pet->name.jpg");
-                $pet->photo = $photo;
-            }
-            if ($request->document != NULL)
-            {
-                $document = Storage::putFileAs('Documents', new File($request->document), "$user->id$pet->name.pdf");
-                $pet->document = $document;
-            }
-            $pet->weight = $request->weight;
-            $pet->birth_date = $request->birth_date;
-            $pet->save();
-            $petId = $pet->id;
-            return($petId);
-
-        } else {
-
-            $user = User::where('id', '=', $request->user_id)->first();
-
-            if ($user == NULL) {
-                return $status = "error";
-            } else {
                 $pet = new self();
-                $pet->user_id = $request->user_id;
+                $pet->user_id = $user_id;
                 $pet->name = $request->name;
                 $pet->species = $request->species;
                 $pet->breed = $request->breed;
                 $pet->color = $request->color;
-                $pet->weight = $request->weight;
-                $pet->birth_date = $request->birth_date;
                 if ($request->image != NULL)
                 {
                     $photo = Storage::putFileAs('Pets', new File($request->image), "$user->id$pet->name.jpg");
                     $pet->photo = $photo;
                 }
+                if ($request->document != NULL)
+                {
+                    $document = Storage::putFileAs('Documents', new File($request->document), "$user->id$pet->name.pdf");
+                    $pet->document = $document;
+                }
+                $pet->weight = $request->weight;
+                $pet->birth_date = $request->birth_date;
                 $pet->save();
+                $petId = $pet->id;
+                return($petId);
+            } else {
+
+                $user = User::where('id', '=', $request->user_id)->first();
+
+                if ($user == NULL) {
+                    return $status = "error";
+                } else {
+                    $pet = new self();
+                    $pet->user_id = $request->user_id;
+                    $pet->name = $request->name;
+                    $pet->species = $request->species;
+                    $pet->breed = $request->breed;
+                    $pet->color = $request->color;
+                    $pet->weight = $request->weight;
+                    $pet->birth_date = $request->birth_date;
+                    if ($request->image != NULL)
+                    {
+                        $photo = Storage::putFileAs('Pets', new File($request->image), "$user->id$pet->name.jpg");
+                        $pet->photo = $photo;
+                    }
+                    $pet->save();
+                }
+                return response()->json([
+                    "message" => 'LLega'
+                ],201);
             }
+        } catch (\Throwable $th) {
+            return response()->json([
+                "message" => 'No'
+            ],401);
         }
+
     }
 }
