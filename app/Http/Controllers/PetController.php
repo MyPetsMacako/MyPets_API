@@ -117,8 +117,9 @@ class PetController extends Controller
         $user = User::where($data)->first();
 
         $url = $request->url;
-        $result = explode("/",$url);
-        var_dump($result);exit;
+        $result = explode("=",$url);
+        $petId = array_pop($result);
+        var_dump($petId);exit;
 
         if ($request->qr != NULL)
         {
