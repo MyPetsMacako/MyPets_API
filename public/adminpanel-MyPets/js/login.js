@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    document.getElementById("logoff").onclick = logoff;
     document.getElementById("button").onclick = required;
 
     $token = window.localStorage.getItem("token");
