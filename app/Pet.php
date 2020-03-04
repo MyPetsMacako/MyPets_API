@@ -49,7 +49,7 @@ class Pet extends Model
 public function register(Request $request)
     {
         try {
-            if (($request->user_id) == NULL) {
+            if (($request->user_id) == null) {
                 $request_token = $request->header('Authorization');
                 $token = new token();
                 $decoded_token = $token->decode($request_token);
