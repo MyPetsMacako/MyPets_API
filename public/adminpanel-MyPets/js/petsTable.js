@@ -50,11 +50,11 @@ function createTable (data){
                 var columna8 = document.createElement("th")
                 columna8.innerHTML = data[i]["birth_date"];
                 var columna9 = document.createElement("th")
-                columna9.innerHTML = data[i]["photo"];
+                columna9.innerHTML = data[i]["qr"];
                 var columna10 = document.createElement("th")
-                columna10.innerHTML = data[i]["documents"];
+                columna10.innerHTML = data[i]["photo"];
                 var columna11 = document.createElement("th")
-                columna11.innerHTML = data[i]["qr"];
+                columna11.innerHTML = data[i]["documents"];
                 var columna12 = document.createElement("button")
                 columna12.innerHTML = "•••";
                 columna12.setAttribute("class", "btn btn-info dropdown-toggle");
