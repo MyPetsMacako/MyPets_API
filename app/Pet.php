@@ -48,12 +48,7 @@ class Pet extends Model
 
 public function register(Request $request)
     {
-        var_dump($request->user_id);
-        return response()->json(
-            $request->user_id
-        ,200);
         if (($request->user_id) == NULL) {
-            var_dump("Metodo1");exit;
             $request_token = $request->header('Authorization');
             $token = new token();
             $decoded_token = $token->decode($request_token);
@@ -67,13 +62,6 @@ public function register(Request $request)
             $pet->species = $request->species;
             $pet->breed = $request->breed;
             $pet->color = $request->color;
-            $pet->weight = $request->weight;
-            $pet->birth_date = $request->birth_date;
-            $pet->save();
-            return response()->json([
-                "Success" => "Llega"
-            ],200);
-            /*
             if ($request->image != NULL)
             {
                 $photo = Storage::putFileAs('Pets', new File($request->image), "$user->id$pet->name.jpg");
@@ -84,18 +72,16 @@ public function register(Request $request)
                 $document = Storage::putFileAs('Documents', new File($request->document), "$user->id$pet->name.pdf");
                 $pet->document = $document;
             }
-            */
-
+            $pet->weight = $request->weight;
+            $pet->birth_date = $request->birth_date;
+            $pet->save();
             $petId = $pet->id;
-            //return($petId);
+            return($petId);
 
         } else {
-            return response()->json(
-                $request->user_id
-            ,200);
+
             $user = User::where('id', '=', $request->user_id)->first();
 
-            var_dump("Metodo2");exit;
             if ($user == NULL) {
                 return $status = "error";
             } else {
