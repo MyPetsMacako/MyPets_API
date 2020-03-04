@@ -66,6 +66,16 @@ public function register(Request $request)
                     $pet->color = $request->color;
                     $pet->weight = $request->weight;
                     $pet->birth_date = $request->birth_date;
+                    $pet->save();
+                    return response()->json([
+                        "qrContent" => "bien"
+                    ],200);
+                } catch (\Throwable $th) {
+                    return response()->json([
+                        "qrContent" => "mal"
+                    ],200);
+                }
+
                     if ($request->image != NULL)
                     {
                         $photo = Storage::putFileAs('Pets', new File($request->image), "$user->id$pet->name.jpg");
@@ -77,15 +87,6 @@ public function register(Request $request)
                         $pet->document = $document;
                     }
                     $petId = $pet->id;
-                    $pet->save();
-                    return response()->json([
-                        "qrContent" => "bien"
-                    ],200);
-                } catch (\Throwable $th) {
-                    return response()->json([
-                        "qrContent" => "mal"
-                    ],200);
-                }
             }
 
          if ($request->user_id != NULL) {
