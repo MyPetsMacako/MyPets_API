@@ -26,7 +26,7 @@ function getData (){
 
 function fillData (data){
     document.getElementById('wellcome').innerHTML = "Bienvenido, "+data["userName"];
-    document.getElementById('users').innerHTML = +data["users"];
+    document.getElementById('users').innerHTML = data["users"];
     document.getElementById('pets').innerHTML = data["pets"];
     document.getElementById('appointments').innerHTML = data["appointments"];
     /* document.getElementById('photos').innerHTML = data["photos"];

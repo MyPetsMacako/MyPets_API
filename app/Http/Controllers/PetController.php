@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 
+
 class PetController extends Controller
 {
 
@@ -105,11 +106,22 @@ class PetController extends Controller
         $petid = $pet;
         $qrContent = strval($url . $petid);
         return $qrContent;
+        $this->saveQR($qrContent);
     }
 
-    public function saveQR(Request $request)
+    public function saveQR($qrContent)
     {
-        $authorization = $request->header('Authorization');
+        /* require_once 'Helpers/phpqrcode/qrlib.php';
+
+        $path = 'http://mypetsapp.es/storage/QR';
+        $file = "qr_".uniqid().".png";
+
+        $text = $qrContent;
+        QRcode::png($text, $file);
+
+        $qr = Storage::putFileAs('QR', new File($request->image), $file); */
+
+        /* $authorization = $request->header('Authorization');
         $token = new token();
         $decoded_token = $token->decode($authorization);
         $email = $decoded_token->email;
@@ -128,7 +140,7 @@ class PetController extends Controller
             $pet->qr = $photo;
         } else {
             print("error");
-        }
+        } */
     }
 
     /**

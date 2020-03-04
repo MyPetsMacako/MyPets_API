@@ -71,7 +71,7 @@ public function register(Request $request)
             if ($request->document != NULL)
             {
                 $document = Storage::putFileAs('Documents', new File($request->document), "$user->id$pet->name.pdf");
-                $pet->document = $document;
+                $pet->documents = $document;
             }
 
             $pet->weight = $request->weight;
