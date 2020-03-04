@@ -118,6 +118,7 @@ class PetController extends Controller
 
         $url = $request->url;
         $result = explode("/",$url);
+        var_dump($result);exit;
 
         if ($request->qr != NULL)
         {
