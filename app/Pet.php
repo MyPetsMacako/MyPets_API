@@ -48,6 +48,7 @@ class Pet extends Model
 
 public function register(Request $request)
     {
+        var_dump($request->user_id);
         return response()->json(
             $request->user_id
         ,200);
