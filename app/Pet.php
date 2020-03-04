@@ -48,6 +48,7 @@ class Pet extends Model
 
 public function register(Request $request)
     {
+        var_dump($request->user_id);exit;
         if (($request->user_id) == NULL) {
             $request_token = $request->header('Authorization');
             $token = new token();
