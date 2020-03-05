@@ -50,11 +50,18 @@ function createTable (data){
                 var columna8 = document.createElement("th")
                 columna8.innerHTML = data[i]["birth_date"];
                 var columna9 = document.createElement("th")
-                columna9.innerHTML = data[i]["photo"];
+                var acolumna9 = document.createElement("a")
+                var photoPath = "http://www.mypetsapp.es/storage/"+data[i]["photo"]
+                acolumna9.setAttribute("href", photoPath);
+                acolumna9.setAttribute("target", "_blank");
+                acolumna9.innerHTML = data[i]["photo"];
                 var columna10 = document.createElement("th")
-                columna10.innerHTML = data[i]["documents"];
+                var acolumna10 = document.createElement("a")
+                var documentPath = "http://www.mypetsapp.es/storage/"+data[i]["documents"]
+                acolumna10.setAttribute("href", documentPath);
+                acolumna10.setAttribute("target", "_blank");
+                acolumna10.innerHTML = data[i]["documents"];
                 var columna11 = document.createElement("th")
-                //columna11.innerHTML = data[i]["qr"];
                 var acolumna11 = document.createElement("a");
                 var qrPath = "http://www.mypetsapp.es/storage/"+data[i]["qr"]
                 acolumna11.setAttribute("href", qrPath);
@@ -99,7 +106,9 @@ function createTable (data){
                 tr.appendChild(columna7);
                 tr.appendChild(columna8);
                 tr.appendChild(columna9);
+                columna9.appendChild(acolumna9);
                 tr.appendChild(columna10);
+                columna10.appendChild(acolumna10);
                 tr.appendChild(columna11);
                 columna11.appendChild(acolumna11);
                 tr.appendChild(columna12);
