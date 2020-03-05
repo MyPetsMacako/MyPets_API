@@ -35,7 +35,6 @@ function get_vars(){
         "weight" : weight,
         "birth_date" : birth
     }
-    console.log(data["image"]);
     return data;
 }
 
