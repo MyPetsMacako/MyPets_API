@@ -99,7 +99,14 @@ public function register(Request $request)
                     $photo = Storage::putFileAs('Pets', new File($request->image), "$user->id$pet->name.jpg");
                     $pet->photo = $photo;
                 }
+                if ($request->document != NULL)
+                {
+                    $document = Storage::putFileAs('Documents', new File($request->document), "$user->id$pet->name.pdf");
+                    $pet->documents = $document;
+                }
                 $pet->save();
+                $petId = $pet->id;
+                return($petId);
             }
         }
     }
