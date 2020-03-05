@@ -7,7 +7,7 @@ use App\Pet;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
-//require "resources\phpqrcode\qrlib.php";
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 
 class PetController extends Controller
@@ -94,54 +94,38 @@ class PetController extends Controller
         }
         else
         {
-            $qrContent = $this->QRContent($pet);
-            return response()->json([
+            $this->QRContent($pet);
+            /* return response()->json([
                 "qrContent" => $qrContent
-            ],200);
+            ],200); */
         }
     }
 
-    public function QRContent($pet): String
+    public function QRContent($pet)
     {
         $url = "http://mypetsapp.es/adminpanel-MyPets/scannedQR.html?id=";
         $petid = $pet;
         $qrContent = strval($url . $petid);
-        return $qrContent;
-        $this->saveQR($qrContent);
+
+        $this->saveQR($qrContent, $petid);
     }
 
-    public function saveQR($qrContent)
+    public function saveQR($qrContent, $petid)
     {
-        /* require_once 'Helpers/phpqrcode/qrlib.php';
+        //https://www.simplesoftware.io/simple-qrcode//
 
-        $path = 'http://mypetsapp.es/storage/QR';
-        $file = "qr_".uniqid().".png";
+        $pet = Pet::where('id','=', $petid)->first();
 
-        $text = $qrContent;
-        QRcode::png($text, $file);
+        $qr_path = "/var/www/html/MyPets_API/storage/app/public/";
+        $qr_name = "QRcodes/"."qr_".$petid.'.png';
+        QrCode::format('png')->size(400)->margin(0)->generate($qrContent, $qr_path.$qr_name);
 
-        $qr = Storage::putFileAs('QR', new File($request->image), $file); */
+        $pet->qr = $qr_name;
+        $pet->save();
 
-        /* $authorization = $request->header('Authorization');
-        $token = new token();
-        $decoded_token = $token->decode($authorization);
-        $email = $decoded_token->email;
-        $data = ['email' => $email];
-        $user = User::where($data)->first();
-
-        $url = $request->url;
-        $result = explode("=",$url);
-        $petId = array_pop($result);
-
-        $pet = Pet::where('id', '=', $petId)->first();
-
-        if ($request->qr != NULL)
-        {
-            $photo = Storage::putFileAs('QR', new File($request->qr), "qr_"+"$user->id$pet->name.jpg");
-            $pet->qr = $photo;
-        } else {
-            print("error");
-        } */
+        return response()->json([
+            "Message" => "Mascota registrada y QR vinculado"
+        ],200);
     }
 
     /**
