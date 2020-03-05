@@ -52,7 +52,7 @@ function get_edit_vars(){
         "name" : name,
         "species" : strSelectedOption,
         "breed" : breed,
-        "colour" : colour,
+        "color" : colour,
         "weight" : weight,
         "birth_date" : birth
     }
