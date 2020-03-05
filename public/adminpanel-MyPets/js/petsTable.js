@@ -54,7 +54,11 @@ function createTable (data){
                 var columna10 = document.createElement("th")
                 columna10.innerHTML = data[i]["documents"];
                 var columna11 = document.createElement("th")
-                columna11.innerHTML = data[i]["qr"];
+                //columna11.innerHTML = data[i]["qr"];
+                var acolumna11 = document.createElement("a");
+                acolumna11.setAttribute('href="index.html"');
+                acolumna11.setAttribute('target="_blank"');
+                acolumna11.innerHTML = data[i]["qr"];;
                 var columna12 = document.createElement("button")
                 columna12.innerHTML = "•••";
                 columna12.setAttribute("class", "btn btn-info dropdown-toggle");
