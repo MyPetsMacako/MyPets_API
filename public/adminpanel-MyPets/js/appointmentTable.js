@@ -9,7 +9,7 @@ function getData (){
     $token = window.localStorage.getItem("token");
     $.ajax({
         type: "GET",
-        url: "http://mypetsapp.es/api/showAppointmentsData",
+        url: "http://www.mypetsapp.es/api/showAppointmentsData",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },
@@ -73,7 +73,7 @@ function destroy(appointmentid) {
 
     $.ajax({
         type: "DELETE",
-        url: "http://mypetsapp.es/api/deleteAppointment/"+appointmentid,
+        url: "http://www.mypetsapp.es/api/deleteAppointment/"+appointmentid,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },

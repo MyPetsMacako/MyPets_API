@@ -20,7 +20,7 @@ function send (){
     var data = get_vars();
     $.ajax({
         type: "POST",
-        url: "http://mypetsapp.es/api/adminLogin",
+        url: "http://www.mypetsapp.es/api/adminLogin",
         data: data,
         success:function(response){
             window.localStorage.setItem('token', response["token"]);

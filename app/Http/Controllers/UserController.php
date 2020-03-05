@@ -150,7 +150,7 @@ class UserController extends Controller
         $email = $decoded_token->email;
         $data = ['email' => $email];
         $user = User::where($data)->first();
-        $path = 'http://mypetsapp.es/storage/';
+        $path = 'http://www.mypetsapp.es/storage/';
         $tel_number = "(No añadido)";
         if ($user->photo != null) {
             $photo = $path . $user->photo;

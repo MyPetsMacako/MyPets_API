@@ -68,7 +68,7 @@ function send (){
     $token = window.localStorage.getItem("token");
     $.ajax({
         type: "POST",
-        url: "http://mypetsapp.es/api/petsRegister",
+        url: "http://www.mypetsapp.es/api/petsRegister",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },
@@ -97,7 +97,7 @@ function edit(){
     $token = window.localStorage.getItem("token");
         $.ajax({
             type: "POST",
-            url: "http://mypetsapp.es/api/updatePetsForAdmin/"+$requestedPetId,
+            url: "http://www.mypetsapp.es/api/updatePetsForAdmin/"+$requestedPetId,
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", $token);
             },
@@ -161,7 +161,7 @@ function getRequestedData($requestedUserId){
     $token = window.localStorage.getItem("token");
     $.ajax({
         type: "GET",
-        url: "http://mypetsapp.es/api/adminRequestedPetInfo/"+$requestedUserId,
+        url: "http://www.mypetsapp.es/api/adminRequestedPetInfo/"+$requestedUserId,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },

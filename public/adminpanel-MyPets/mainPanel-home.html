@@ -41,7 +41,7 @@
         $token = window.localStorage.getItem("token");
         $.ajax({
             type: "GET",
-            url: "http://mypetsapp.es/api/showUserFullname",
+            url: "http://www.mypetsapp.es/api/showUserFullname",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", $token);
             },

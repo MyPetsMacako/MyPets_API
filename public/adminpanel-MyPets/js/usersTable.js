@@ -12,7 +12,7 @@ function getData (){
     $token = window.localStorage.getItem("token");
     $.ajax({
         type: "GET",
-        url: "http://mypetsapp.es/api/showUsersData",
+        url: "http://www.mypetsapp.es/api/showUsersData",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },
@@ -155,7 +155,7 @@ function destroy(userid) {
 
     $.ajax({
         type: "DELETE",
-        url: "http://mypetsapp.es/api/deleteUser/"+userid,
+        url: "http://www.mypetsapp.es/api/deleteUser/"+userid,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },
@@ -176,7 +176,7 @@ function ban(userid) {
 
     $.ajax({
         type: "POST",
-        url: "http://mypetsapp.es/api/ban/"+userid,
+        url: "http://www.mypetsapp.es/api/ban/"+userid,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },
@@ -197,7 +197,7 @@ function role(userid) {
 
     $.ajax({
         type: "POST",
-        url: "http://mypetsapp.es/api/role/"+userid,
+        url: "http://www.mypetsapp.es/api/role/"+userid,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },

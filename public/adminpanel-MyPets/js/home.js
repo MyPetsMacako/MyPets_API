@@ -9,7 +9,7 @@ function getData (){
     $token = window.localStorage.getItem("token");
     $.ajax({
         type: "GET",
-        url: "http://mypetsapp.es/api/adminPanelInfo",
+        url: "http://www.mypetsapp.es/api/adminPanelInfo",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },

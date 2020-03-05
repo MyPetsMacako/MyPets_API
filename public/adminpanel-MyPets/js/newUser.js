@@ -72,7 +72,7 @@ function send(){
     if (passMatch == true){
         $.ajax({
             type: "POST",
-            url: "http://mypetsapp.es/api/register",
+            url: "http://www.mypetsapp.es/api/register",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", $token);
             },
@@ -106,7 +106,7 @@ function edit(){
     console.log($token);
         $.ajax({
             type: "POST",
-            url: "http://mypetsapp.es/api/adminUpdate/"+$requestedUserId,
+            url: "http://www.mypetsapp.es/api/adminUpdate/"+$requestedUserId,
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", $token);
             },
@@ -170,7 +170,7 @@ function getRequestedData($requestedUserId){
     $token = window.localStorage.getItem("token");
     $.ajax({
         type: "GET",
-        url: "http://mypetsapp.es/api/requestedUserInfo/"+$requestedUserId,
+        url: "http://www.mypetsapp.es/api/requestedUserInfo/"+$requestedUserId,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },

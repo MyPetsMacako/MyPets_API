@@ -8,7 +8,7 @@ $(document).ready(function(){
 function send (){
     $.ajax({
         type: "GET",
-        url: "http://mypetsapp.es/api/getQRData/"+$petid,
+        url: "http://www.mypetsapp.es/api/getQRData/"+$petid,
         success:function(data){
             console.log(data);
             fillData(data);

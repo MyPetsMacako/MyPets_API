@@ -12,7 +12,7 @@ function getData (){
     $token = window.localStorage.getItem("token");
     $.ajax({
         type: "GET",
-        url: "http://mypetsapp.es/api/showPetsData",
+        url: "http://www.mypetsapp.es/api/showPetsData",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },
@@ -109,7 +109,7 @@ function destroy(petid) {
 
     $.ajax({
         type: "DELETE",
-        url: "http://mypetsapp.es/api/adminDeletePet/"+petid,
+        url: "http://www.mypetsapp.es/api/adminDeletePet/"+petid,
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", $token);
         },

@@ -21,7 +21,7 @@ class PetController extends Controller
                         ->get();
 
         $photo = $pet[0]["photo"];
-        $path = "http://mypetsapp.es/storage/";
+        $path = "http://www.mypetsapp.es/storage/";
         $photo = $path . $photo;
         $pet[0]["photo"] = $photo;
         return response()->json(
@@ -103,7 +103,7 @@ class PetController extends Controller
 
     public function QRContent($pet)
     {
-        $url = "http://mypetsapp.es/adminpanel-MyPets/scannedQR.html?id=";
+        $url = "http://www.mypetsapp.es/adminpanel-MyPets/scannedQR.html?id=";
         $petid = $pet;
         $qrContent = strval($url . $petid);
 
@@ -142,7 +142,7 @@ class PetController extends Controller
         $email = $decoded_token->email;
         $data = ['email' => $email];
         $user = User::where($data)->first();
-        $path = 'http://mypetsapp.es/storage/';
+        $path = 'http://www.mypetsapp.es/storage/';
         $pets = Pet::where('user_id', $user->id)->get();
         $ids = array();
         $names = array();
