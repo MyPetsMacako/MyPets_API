@@ -125,8 +125,9 @@ class PetController extends Controller
         $pet->qr = $qr_name;
         $pet->save();
         print("fin");
+
         return response()->json([
-            "Message" => "Mascota registrada y QR vinculado"
+            "message" => "Mascota registrada y QR vinculado"
         ],200);
     }
 
