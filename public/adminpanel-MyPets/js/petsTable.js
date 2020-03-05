@@ -56,10 +56,11 @@ function createTable (data){
                 var columna11 = document.createElement("th")
                 //columna11.innerHTML = data[i]["qr"];
                 var acolumna11 = document.createElement("a");
-                acolumna11.setAttribute('href="index.html"');
-                acolumna11.setAttribute('target="_blank"');
-                acolumna11.innerHTML = data[i]["qr"];;
-                var columna12 = document.createElement("button")
+                var qrPath = "http://www.mypetsapp.es/storage/"+data[i]["qr"]
+                acolumna11.setAttribute("href", qrPath);
+                acolumna11.setAttribute("target", "_blank");
+                acolumna11.innerHTML = data[i]["qr"];
+                var columna12 = document.createElement("button");
                 columna12.innerHTML = "•••";
                 columna12.setAttribute("class", "btn btn-info dropdown-toggle");
                 columna12.setAttribute("type", "button");
@@ -100,6 +101,7 @@ function createTable (data){
                 tr.appendChild(columna9);
                 tr.appendChild(columna10);
                 tr.appendChild(columna11);
+                columna11.appendChild(acolumna11);
                 tr.appendChild(columna12);
                 columna12.appendChild(div);
                 div.appendChild(a);
