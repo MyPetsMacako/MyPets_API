@@ -103,7 +103,6 @@ class PetController extends Controller
 
     public function QRContent($pet)
     {
-        print("entra1");
         $url = "http://www.mypetsapp.es/adminpanel-MyPets/scannedQR.html?id=";
         $petid = $pet;
         $qrContent = strval($url . $petid);
@@ -115,7 +114,6 @@ class PetController extends Controller
 
     public function saveQR($qrContent, $petid)
     {
-        print("entra2");
         //https://www.simplesoftware.io/simple-qrcode//
 
         $pet = Pet::where('id','=', $petid)->first();
@@ -126,7 +124,6 @@ class PetController extends Controller
 
         $pet->qr = $qr_name;
         $pet->save();
-        print("fin");
 
         return true;
 

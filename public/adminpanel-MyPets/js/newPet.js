@@ -25,7 +25,6 @@ function get_vars(){
     var colour = document.getElementById("colour").value;
     var weight = document.getElementById("weight").value;
     var birth = document.getElementById("birth").value;
-    var image = document.getElementById("photo").image;
 
     var data = {
         "user_id" : user_id,
@@ -34,8 +33,7 @@ function get_vars(){
         "breed" : breed,
         "color" : colour,
         "weight" : weight,
-        "birth_date" : birth,
-        "image" : image
+        "birth_date" : birth
     }
     console.log(data["image"]);
     return data;
