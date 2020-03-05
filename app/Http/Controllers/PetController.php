@@ -95,9 +95,9 @@ class PetController extends Controller
         else
         {
             $this->QRContent($pet);
-            /* return response()->json([
-                "qrContent" => $qrContent
-            ],200); */
+            return response()->json([
+                "message" => "Mascota registrada y QR vinculado"
+            ],200);
         }
     }
 
@@ -109,6 +109,8 @@ class PetController extends Controller
         $qrContent = strval($url . $petid);
 
         $this->saveQR($qrContent, $petid);
+
+        return true;
     }
 
     public function saveQR($qrContent, $petid)
@@ -126,9 +128,11 @@ class PetController extends Controller
         $pet->save();
         print("fin");
 
-        return response()->json([
+        return true;
+
+        /* return response()->json([
             "message" => "Mascota registrada y QR vinculado"
-        ],200);
+        ],200); */
     }
 
     /**
