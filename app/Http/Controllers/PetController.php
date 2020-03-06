@@ -231,7 +231,9 @@ class PetController extends Controller
         $pet->color = $request->color;
         $pet->weight = $request->weight;
         $pet->birth_date = $request->birth_date;
-        $pet->photo = $request->photo;
+
+        $photo = Storage::putFileAs('Pets', new File($request->photo), "$user->id$pet->name.jpg");
+        $pet->photo = $photo;
         $pet->documents = $request->documents;
         $pet->save();
 
