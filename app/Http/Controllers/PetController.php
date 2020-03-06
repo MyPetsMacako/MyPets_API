@@ -219,7 +219,7 @@ class PetController extends Controller
             ], 401);
         }
 
-        if($request->name==NULL || $request->species==NULL ||  $request->breed==NULL || $request->color==NULL || $request->weight==NULL || $request->birth_date ==NULL)
+        if($request->name==NULL ||  $request->breed==NULL || $request->color==NULL || $request->weight==NULL || $request->birth_date ==NULL)
         {
             return response()->json([
                 "message" => 'Rellena todos los campos'
@@ -227,7 +227,6 @@ class PetController extends Controller
         }
 
         $pet->name = $request->name;
-        $pet->species = $request->species;
         $pet->breed = $request->breed;
         $pet->color = $request->color;
         $pet->weight = $request->weight;
@@ -245,13 +244,14 @@ class PetController extends Controller
     {
         $pet = Pet::where('id', '=', $id)->first();
 
-        if($request->name==NULL ||  $request->breed==NULL || $request->color==NULL || $request->weight==NULL || $request->birth_date ==NULL)
+        if($request->name==NULL || $request->species==NULL ||  $request->breed==NULL || $request->color==NULL || $request->weight==NULL || $request->birth_date ==NULL)
         {
             return response()->json([
                 "message" => 'Rellena todos los campos'
             ], 401);
         } else {
             $pet->name = $request->name;
+            $pet->species = $request->species;
             $pet->breed = $request->breed;
             $pet->color = $request->color;
             $pet->weight = $request->weight;
