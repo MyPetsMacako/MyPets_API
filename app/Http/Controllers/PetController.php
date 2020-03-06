@@ -245,7 +245,7 @@ class PetController extends Controller
     {
         $pet = Pet::where('id', '=', $id)->first();
 
-        if($request->name==NULL || $request->species==NULL ||  $request->breed==NULL || $request->colour==NULL || $request->weight==NULL || $request->birth_date ==NULL)
+        if($request->name==NULL || $request->species==NULL ||  $request->breed==NULL || $request->color==NULL || $request->weight==NULL || $request->birth_date ==NULL)
         {
             return response()->json([
                 "message" => 'Rellena todos los campos'
@@ -254,11 +254,9 @@ class PetController extends Controller
             $pet->name = $request->name;
             $pet->species = $request->species;
             $pet->breed = $request->breed;
-            $pet->color = $request->colour;
+            $pet->color = $request->color;
             $pet->weight = $request->weight;
             $pet->birth_date = $request->birth_date;
-            //$pet->photo = $request->photo;
-            //$pet->documents = $request->documents;
             $pet->save();
             return response()->json([
                 "message" => 'Datos de la mascota actualizados'
