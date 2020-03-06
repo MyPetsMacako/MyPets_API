@@ -152,11 +152,13 @@ class UserController extends Controller
         $user = User::where($data)->first();
         $path = 'http://www.mypetsapp.es/storage/';
         $tel_number = "(No añadido)";
-        if ($user->photo != null && $user->tel_number != null) {
+        if ($user->photo != null) {
             $photo = $path . $user->photo;
-            $tel_number = $user->tel_number;
         }else{
             $photo = ".";
+        }
+        if ($user->tel_number != null){
+            $tel_number = $user->tel_number;
         }
 
         return response()->json([
